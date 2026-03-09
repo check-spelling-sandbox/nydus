@@ -420,7 +420,7 @@ mod tests {
         hdr.set_tag(200);
         assert_eq!(hdr.get_tag(), 200);
 
-        // Test Debug, Clone, PartiaEq trait
+        // Test Debug, Clone, PartialEq trait
         assert_eq!(hdr, hdr.clone());
         assert_eq!(hdr.clone().get_code(), hdr.get_code());
         assert_eq!(format!("{:?}", hdr.clone()), format!("{:?}", hdr));
