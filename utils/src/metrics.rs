@@ -961,7 +961,7 @@ mod tests {
     }
 
     #[test]
-    fn test_latecny() {
+    fn test_latency() {
         let f = FsIoStats::default();
         assert_eq!(f.latency_start(), None);
         f.measure_latency.store(true, Ordering::Relaxed);
