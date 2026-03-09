@@ -234,7 +234,7 @@ pub trait ServiceArgs {
     /// Get value of commandline option `key`.
     fn value_of(&self, key: &str) -> Option<&String>;
 
-    /// Check whether commandline optio `key` is present.
+    /// Check whether commandline option `key` is present.
     fn is_present(&self, key: &str) -> bool;
 }
 
