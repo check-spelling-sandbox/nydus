@@ -186,7 +186,7 @@ func Changes(ctx context.Context, appendMount func(path string), withPaths []str
 			// File exists in the base layer. Thus this is modified.
 			kind = fs.ChangeKindModify
 			// Avoid including directory that hasn't been modified. If /foo/bar/baz is modified,
-			// then /foo will apper here even if it's not been modified because it's the parent of bar.
+			// then /foo will appear here even if it's not been modified because it's the parent of bar.
 			if same, err := sameDirent(baseF, f, filepath.Join(base, path), filepath.Join(upperdirView, path)); same {
 				skipRecord = true // Both are the same, don't record the change
 			} else if err != nil {
