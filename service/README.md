@@ -101,7 +101,7 @@ let daemon = {
       	// Mounts FUSE filesystem in rw mode
         !writable,
         // FUSE server failover policy
-        failvoer-policy,
+        failover-policy,
         // Request structure to mount a backend filesystem instance
         Some(cmd),
         BTI.to_owned(),
