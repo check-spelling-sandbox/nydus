@@ -291,7 +291,7 @@ mod tests {
             FsBackendType::from_str("passthrough_fs").unwrap(),
             FsBackendType::PassthroughFs
         );
-        assert!(FsBackendType::from_str("passthroug").is_err());
+        assert!(FsBackendType::from_str("pass_through").is_err());
 
         assert_eq!(format!("{}", FsBackendType::Rafs), "Rafs");
         assert_eq!(format!("{}", FsBackendType::PassthroughFs), "PassthroughFs");
