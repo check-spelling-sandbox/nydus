@@ -59,7 +59,7 @@ type Handler interface {
 	Handle(ctx context.Context, file File) ([]Chunk, error)
 }
 
-type RemoteHanlder interface {
+type RemoteHandler interface {
 	// Handle handles the file and returns the object information.
 	Handle(ctx context.Context) (*Backend, []FileAttribute, error)
 }
