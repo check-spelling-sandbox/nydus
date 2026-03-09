@@ -1140,7 +1140,7 @@ pub struct RafsV6InodeChunkHeader {
 impl RafsV6InodeChunkHeader {
     /// Create a new instance of `RafsV6InodeChunkHeader`.
     ///
-    /// If all chunks are continous in uncompressed cache file, the `chunk_size` will set to
+    /// If all chunks are continuous in uncompressed cache file, the `chunk_size` will set to
     /// `inode.size().next_power_of_two()`, so EROFS can optimize page cache in this case.
     /// Otherwise `chunk_size` is set to RAFS filesystem's chunk size.
     pub fn new(chunk_size: u64, block_size: u64) -> Self {
