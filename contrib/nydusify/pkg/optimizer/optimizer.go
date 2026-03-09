@@ -435,7 +435,7 @@ func pushNewBootstrap(ctx context.Context, opt Opt, buildInfo BuildInfo) (*boots
 
 	oldBootstrapDesc := parser.FindNydusBootstrapDesc(&buildInfo.SourceImage.Manifest)
 	if oldBootstrapDesc == nil {
-		return nil, fmt.Errorf("not found originial Nydus bootstrap layer in manifest")
+		return nil, fmt.Errorf("not found original Nydus bootstrap layer in manifest")
 	}
 
 	annotations := oldBootstrapDesc.Annotations
