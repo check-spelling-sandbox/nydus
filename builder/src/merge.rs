@@ -282,7 +282,7 @@ impl Merger {
             })?;
 
             if let Some(tree) = &mut tree {
-                tree.merge_overaly(ctx, upper)?;
+                tree.merge_overlay(ctx, upper)?;
             } else {
                 tree = Some(upper);
             }
