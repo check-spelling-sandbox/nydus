@@ -952,7 +952,7 @@ impl Debug for BlobIoVec {
         f.debug_struct("BlobIoDesc")
             .field("blob_index", &self.bi_blob.blob_index)
             .field("size", &self.bi_size)
-            .field("decriptors", &self.bi_vec)
+            .field("descriptors", &self.bi_vec)
             .finish()
     }
 }
