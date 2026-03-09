@@ -51,7 +51,7 @@ pub use filecache::FileCacheMgr;
 #[cfg(target_os = "linux")]
 pub use fscache::FsCacheMgr;
 
-/// Timeout in milli-seconds to retrieve blob data from backend storage.
+/// Timeout in milliseconds to retrieve blob data from backend storage.
 pub const SINGLE_INFLIGHT_WAIT_TIMEOUT: u64 = 2000;
 
 struct BlobIoMergeState<'a, F: FnMut(BlobIoRange)> {
