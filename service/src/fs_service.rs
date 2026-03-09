@@ -408,7 +408,7 @@ mod tests {
             &FsBackendMountCmd {
                 fs_type: FsBackendType::Rafs,
                 config: config.to_string(),
-                mountpoint: "testmonutount".to_string(),
+                mountpoint: "testmount".to_string(),
                 source: "testsource".to_string(),
                 prefetch_files: Some(vec!["testfile".to_string()]),
             },
