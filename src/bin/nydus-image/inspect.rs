@@ -730,7 +730,7 @@ impl Executor {
     pub(crate) fn usage() {
         println!(
             r#"
-    stats:              Display RAFS filesystesm metadata
+    stats:              Display RAFS filesystem metadata
     ls:                 Show files in current directory
     cd DIR:             Change current directory
     stat FILE_NAME:     Show particular information of RAFS file

@@ -108,7 +108,7 @@ func (c *HotUpgradeTestSuite) TestHotUpgrade(t *testing.T) {
 	err = oldNydusd.WaitStatus("RUNNING")
 	require.NoError(t, err)
 
-	// Verify filesytem on new nydusd
+	// Verify filesystem on new nydusd
 	oldNydusd.Verify(t, layer.FileTree)
 
 	// Snapshotter receive fuse fd from old nydusd
