@@ -14,7 +14,7 @@ use openssl::{rand, symm};
 
 // The length of the data unit to be encrypted.
 pub const DATA_UNIT_LENGTH: usize = 16;
-// The length of thd iv (Initialization Vector) to do AES-XTS encryption.
+// The length of the iv (Initialization Vector) to do AES-XTS encryption.
 pub const AES_XTS_IV_LENGTH: usize = 16;
 // The length of the key to do AES-128-XTS encryption.
 pub const AES_128_XTS_KEY_LENGTH: usize = 32;
