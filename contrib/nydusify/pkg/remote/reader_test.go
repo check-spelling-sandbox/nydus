@@ -64,19 +64,19 @@ func (m *MockResolver) PusherInChunked(ctx context.Context, ref string) (remotes
 	return nil, errors.New("PusherInChunkedFunc not implemented")
 }
 
-type mockReadSeekCloeser struct {
+type mockReadSeekCloser struct {
 	buf bytes.Buffer
 }
 
-func (m *mockReadSeekCloeser) Read(p []byte) (n int, err error) {
+func (m *mockReadSeekCloser) Read(p []byte) (n int, err error) {
 	return m.buf.Read(p)
 }
 
-func (m *mockReadSeekCloeser) Seek(int64, int) (int64, error) {
+func (m *mockReadSeekCloser) Seek(int64, int) (int64, error) {
 	return 0, nil
 }
 
-func (m *mockReadSeekCloeser) Close() error {
+func (m *mockReadSeekCloser) Close() error {
 	return nil
 }
 
@@ -113,7 +113,7 @@ func TestReadSeekCloser(t *testing.T) {
 				FetcherFunc: func(context.Context, string) (remotes.Fetcher, error) {
 					var buf bytes.Buffer
 					return remotes.FetcherFunc(func(context.Context, ocispec.Descriptor) (io.ReadCloser, error) {
-						return &mockReadSeekCloeser{
+						return &mockReadSeekCloser{
 							buf: buf,
 						}, nil
 					}), nil
