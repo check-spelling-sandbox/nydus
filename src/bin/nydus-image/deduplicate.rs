@@ -361,7 +361,7 @@ impl Algorithm<SqliteDatabase> {
         Ok((chunkdict_chunks, chunkdict_blobs, noise_points))
     }
 
-    /// Baseed chunk list to fill chunkdict, including all chunks in the same blob and all blobs in the chunkdict.
+    /// Iterate chunk list to fill chunkdict, including all chunks in the same blob and all blobs in the chunkdict.
     fn fill_chunkdict(
         &mut self,
         chunkdict_chunks: &mut Vec<ChunkdictChunkInfo>,
