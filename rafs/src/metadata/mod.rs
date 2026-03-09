@@ -1236,7 +1236,7 @@ mod tests {
 
     fn get_meta(
         chunk_size: u32,
-        explice_uidgid: bool,
+        explicit_uidgid: bool,
         tartfs_mode: bool,
         hash: RafsSuperFlags,
         comp: RafsSuperFlags,
@@ -1247,7 +1247,7 @@ mod tests {
             chunk_size,
             ..Default::default()
         };
-        if explice_uidgid {
+        if explicit_uidgid {
             meta.flags |= RafsSuperFlags::EXPLICIT_UID_GID;
         }
         if tartfs_mode {
