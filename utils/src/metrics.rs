@@ -967,7 +967,7 @@ mod tests {
         f.measure_latency.store(true, Ordering::Relaxed);
         let s = f.latency_start().unwrap();
         let d = Duration::new(1, 500_000_000);
-        /* because of the timer resolution, the elapsed maybe greater than 1.5s gentlely*/
+        /* because of the timer resolution, the elapsed maybe greater than 1.5s gently*/
         f.latency_end(&s.checked_sub(d), StatsFop::Read);
         assert_eq!(
             f.read_latency_dist[latency_micros_range_index(1_500_000)].count(),
