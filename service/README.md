@@ -74,7 +74,7 @@ let cmd = FsBackendMountCmd {
     source: bootstrap,
     // Backend config
     config,
-    // Virutal mountpoint
+    // Virtual mountpoint
     mountpoint: "/".to_string(),
     // Prefetch files
     prefetch_files: None,
