@@ -389,7 +389,7 @@ mod tests {
         let root_dir = Path::new(root_dir).join("../tests/texture/blobs/");
 
         let config = LocalDiskConfig {
-            device_path: root_dir.join("nonexist_blob_file").display().to_string(),
+            device_path: root_dir.join("nonexistent_blob_file").display().to_string(),
             disable_gpt: true,
         };
         assert!(LocalDisk::new(&config, Some("test")).is_err());

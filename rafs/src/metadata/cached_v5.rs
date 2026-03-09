@@ -1939,7 +1939,7 @@ mod cached_tests {
         sb.hash_inode(Arc::new(inode)).unwrap();
         assert_eq!(sb.get_max_ino(), u64::MAX);
 
-        // Test getting non-existent inode
+        // Test getting nonexistent inode
         assert!(sb.get_inode(u64::MAX - 1, false).is_err());
         assert!(sb.get_extended_inode(u64::MAX - 1, false).is_err());
 

@@ -79,7 +79,7 @@ func TestParseBackendConfig(t *testing.T) {
 	_, err = parseBackendConfig(configJSON, file.Name())
 	require.Error(t, err)
 
-	_, err = parseBackendConfig("", "non-existent.json")
+	_, err = parseBackendConfig("", "nonexistent.json")
 	require.Error(t, err)
 }
 
@@ -424,8 +424,8 @@ func TestValidateSourceAndTargetArchives(t *testing.T) {
 			expectError:   false,
 		},
 		{
-			name:          "non-existent source archive",
-			sourceArchive: "/path/to/non-existent-source.tar",
+			name:          "nonexistent source archive",
+			sourceArchive: "/path/to/nonexistent-source.tar",
 			targetArchive: "",
 			expectError:   true,
 			errorContains: "source archive not accessible",
@@ -437,7 +437,7 @@ func TestValidateSourceAndTargetArchives(t *testing.T) {
 			expectError:   false,
 		},
 		{
-			name:          "target archive with non-existent directory",
+			name:          "target archive with nonexistent directory",
 			sourceArchive: "",
 			targetArchive: "/non/existent/directory/target.tar",
 			expectError:   true,
