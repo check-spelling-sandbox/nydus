@@ -218,7 +218,7 @@ func newNydusd(conf NydusdConfig) (*Nydusd, error) {
 		args = append(args, "--writable")
 	}
 
-	logrus.Infof("commad:%s %s", conf.NydusdPath, strings.Join(args, " "))
+	logrus.Infof("command:%s %s", conf.NydusdPath, strings.Join(args, " "))
 	cmd := exec.Command(conf.NydusdPath, args...)
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
