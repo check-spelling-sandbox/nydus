@@ -17,7 +17,7 @@ type Options struct {
 	Dir              string
 	ContextDir       string
 	Handler          backend.Handler
-	RemoteHandler    backend.RemoteHanlder
+	RemoteHandler    backend.RemoteHandler
 	MetaOutput       string
 	BackendOutput    string
 	AttributesOutput string
