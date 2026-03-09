@@ -199,7 +199,7 @@ impl Tree {
     }
 
     /// Merge the upper layer tree into the lower layer tree, applying whiteout rules.
-    pub fn merge_overaly(&mut self, ctx: &BuildContext, upper: Tree) -> Result<()> {
+    pub fn merge_overlay(&mut self, ctx: &BuildContext, upper: Tree) -> Result<()> {
         assert_eq!(self.name, "/".as_bytes());
         assert_eq!(upper.name, "/".as_bytes());
 
