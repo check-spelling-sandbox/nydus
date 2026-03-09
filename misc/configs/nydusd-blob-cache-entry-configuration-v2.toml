@@ -50,7 +50,7 @@ check_interval = 5
 # Replace URL to http to request source registry with proxy, and allow falling back to https if the proxy is unhealthy.
 use_http = false
 
-[backend.registy]
+[backend.registry]
 # Registry http scheme, either 'http' or 'https'
 scheme = "https"
 # Registry url host
