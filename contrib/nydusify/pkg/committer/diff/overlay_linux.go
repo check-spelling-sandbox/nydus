@@ -95,7 +95,7 @@ func GetOverlayLayers(m mount.Mount) ([]string, error) {
 				l[i], l[j] = l[j], l[i] // make l[0] = bottommost
 			}
 		} else if strings.HasPrefix(o, "workdir=") || o == "index=off" || o == "userxattr" || strings.HasPrefix(o, "redirect_dir=") {
-			// these options are possible to specfied by the snapshotter but not indicate dir locations.
+			// these options are possible to specified by the snapshotter but not indicate dir locations.
 			continue
 		} else {
 			// encountering an unknown option. return error and fall back to walking differ
