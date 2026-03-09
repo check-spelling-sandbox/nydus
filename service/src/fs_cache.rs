@@ -584,7 +584,7 @@ impl FsCacheHandler {
         std::mem::forget(src);
         std::mem::forget(dst);
         ret.map_err(|e| {
-            warn!("failed to copy content from bootstap into cache fd, {}", e);
+            warn!("failed to copy content from bootstrap into cache fd, {}", e);
             e
         })
     }

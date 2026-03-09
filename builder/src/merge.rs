@@ -69,7 +69,7 @@ impl Merger {
     ///
     /// # Arguments
     /// - sources: contains one or more per layer bootstraps in order of lower to higher.
-    /// - chunk_dict: contain the chunk dictionary used to build per layer boostrap, or None.
+    /// - chunk_dict: contain the chunk dictionary used to build per layer bootstrap, or None.
     #[allow(clippy::too_many_arguments)]
     pub fn merge(
         ctx: &mut BuildContext,
@@ -173,7 +173,7 @@ impl Merger {
                 .context("failed to get RAFS version number")?;
             ctx.compressor = rs.meta.get_compressor();
             ctx.digester = rs.meta.get_digester();
-            // If any RAFS filesystems are encrypted, the merged boostrap will be marked as encrypted.
+            // If any RAFS filesystems are encrypted, the merged bootstrap will be marked as encrypted.
             match rs.meta.get_cipher() {
                 crypt::Algorithm::None => (),
                 crypt::Algorithm::Aes128Xts => ctx.cipher = crypt::Algorithm::Aes128Xts,
