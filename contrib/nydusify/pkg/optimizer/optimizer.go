@@ -439,7 +439,7 @@ func pushNewBootstrap(ctx context.Context, opt Opt, buildInfo BuildInfo) (*boots
 	}
 
 	annotations := oldBootstrapDesc.Annotations
-	annotations[utils.LayerAnnotationNyudsPrefetchBlob] = buildInfo.PrefetchBlobID
+	annotations[utils.LayerAnnotationNydusPrefetchBlob] = buildInfo.PrefetchBlobID
 
 	// push bootstrap
 	bootstrapDesc := ocispec.Descriptor{
