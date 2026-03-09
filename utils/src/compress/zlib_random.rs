@@ -596,8 +596,8 @@ impl ZranStream {
     }
 
     fn reset2(&mut self, is_gzip: bool) -> Result<()> {
-        let winodw_bits = if is_gzip { 31 } else { -15 };
-        let ret = unsafe { inflateReset2(self.stream.deref_mut() as *mut z_stream, winodw_bits) };
+        let window_bits = if is_gzip { 31 } else { -15 };
+        let ret = unsafe { inflateReset2(self.stream.deref_mut() as *mut z_stream, window_bits) };
         if ret != Z_OK {
             return Err(einval!("failed to reset zlib inflate context"));
         }
