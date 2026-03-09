@@ -42,7 +42,7 @@ func (c *CommitTestSuite) TestCommitContainer() test.Generator {
 	}
 }
 
-func (c *CommitTestSuite) TestCommitAndCheck(ctx tool.Context, image, commitedImage string) {
+func (c *CommitTestSuite) TestCommitAndCheck(ctx tool.Context, image, committedImage string) {
 	// run nydus container
 	containerName := uuid.NewString()
 	runContainerCmd := fmt.Sprintf("sudo nerdctl --snapshotter nydus run -d -t --insecure-registry --name=%s %s sh", containerName, image)
@@ -60,13 +60,13 @@ func (c *CommitTestSuite) TestCommitAndCheck(ctx tool.Context, image, commitedIm
 
 	// commit container
 	committedContainerName := fmt.Sprintf("%s-committed", containerName)
-	commitCmd := fmt.Sprintf("sudo %s commit --container %s --target %s", ctx.Binary.Nydusify, containerID, commitedImage)
+	commitCmd := fmt.Sprintf("sudo %s commit --container %s --target %s", ctx.Binary.Nydusify, containerID, committedImage)
 	tool.RunWithoutOutput(c.t, commitCmd)
 
 	// run committed container
-	runCommittedContainerCmd := fmt.Sprintf("sudo nerdctl --snapshotter nydus run  -d -t --insecure-registry --name=%s %s sh", committedContainerName, commitedImage)
+	runCommittedContainerCmd := fmt.Sprintf("sudo nerdctl --snapshotter nydus run  -d -t --insecure-registry --name=%s %s sh", committedContainerName, committedImage)
 	tool.RunWithOutput(runCommittedContainerCmd)
-	defer tool.ClearContainer(c.t, commitedImage, "nydus", committedContainerName)
+	defer tool.ClearContainer(c.t, committedImage, "nydus", committedContainerName)
 
 	// check committed file content
 	checkFileContent(c.t, committedContainerName, "/root/commit", "This is Nydus commit")
