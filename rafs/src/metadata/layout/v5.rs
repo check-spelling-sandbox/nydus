@@ -1134,7 +1134,7 @@ impl RafsV5ChunkInfo {
         RafsV5ChunkInfo::default()
     }
 
-    /// Load a Rafs v5 indoe from a reader.
+    /// Load a Rafs v5 info from a reader.
     pub fn load(&mut self, r: &mut RafsIoReader) -> Result<()> {
         r.read_exact(self.as_mut())
     }
