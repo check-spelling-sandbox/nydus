@@ -67,7 +67,7 @@ $ sudo reboot
 sudo yum install cachefilesd
 ```
 
-3.  Start cachefilesd deamon.
+3.  Start cachefilesd daemon.
 ```
 sudo systemctl start cachefilesd
 sudo systemctl status cachefilesd
