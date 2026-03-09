@@ -648,9 +648,9 @@ mod nbd {
         _apisock: Option<&str>,
     ) -> Result<()> {
         let mut entry = if let Some(bootstrap) = args.value_of("bootstrap") {
-            let dir = args.value_of("localfs-dir").ok_or_else(|| {
-                einval!("option `-D/--localfs-dir` is required by `--boootstrap`")
-            })?;
+            let dir = args
+                .value_of("localfs-dir")
+                .ok_or_else(|| einval!("option `-D/--localfs-dir` is required by `--bootstrap`"))?;
             let config = r#"
             {
                 "type": "bootstrap",
