@@ -125,7 +125,7 @@ where
             .sign(Method::GET, &mut headers, resource.as_str(), url.as_str())
             .map_err(ObjectStorageError::Auth)?;
 
-        // Safe because the the call() is a synchronous operation.
+        // Safe because the call() is a synchronous operation.
         let mut resp = self
             .connection
             .call::<&[u8]>(Method::GET, url.as_str(), None, None, &mut headers, true)
