@@ -101,7 +101,7 @@ func (cli *SnapshotterClient) request(method, urlSuffix string, body any) (respB
 	}
 
 	if resp.StatusCode/100 != 2 {
-		return nil, fmt.Errorf("faild  to do request(%v), got status %s, and resp %s", req, resp.Status, respBody)
+		return nil, fmt.Errorf("failed to do request(%v), got status %s, and resp %s", req, resp.Status, respBody)
 	}
 
 	return
