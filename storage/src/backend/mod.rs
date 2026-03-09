@@ -95,7 +95,7 @@ impl fmt::Display for BackendError {
 /// Specialized `Result` for storage backends.
 pub type BackendResult<T> = std::result::Result<T, BackendError>;
 
-/// Trait to read data from a on storage backend.
+/// Trait to read data from a storage backend.
 pub trait BlobReader: Send + Sync {
     /// Get size of the blob file.
     fn blob_size(&self) -> BackendResult<u64>;

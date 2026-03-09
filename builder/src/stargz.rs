@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: Apache-2.0
 
-//! Generate a RAFS filesystem bootstrap from an stargz layer, reusing the stargz layer as data blob.
+//! Generate a RAFS filesystem bootstrap from a stargz layer, reusing the stargz layer as data blob.
 
 use std::collections::HashMap;
 use std::ffi::{OsStr, OsString};

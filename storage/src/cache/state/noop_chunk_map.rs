@@ -9,7 +9,7 @@ use crate::device::BlobChunkInfo;
 
 /// A dummy implementation of the [ChunkMap] trait.
 ///
-/// The `NoopChunkMap` is an dummy implementation of [ChunkMap], which just reports every chunk as
+/// The `NoopChunkMap` is a dummy implementation of [ChunkMap], which just reports every chunk as
 /// always ready to use or not. It may be used to support disk based backend storage.
 pub struct NoopChunkMap {
     cached: bool,
