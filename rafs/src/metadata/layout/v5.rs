@@ -729,7 +729,7 @@ impl RafsStore for RafsV5BlobTable {
 
 /// Rafs v5 extended blob information on disk metadata.
 ///
-/// RafsV5ExtDBlobEntry is appended to the tail of bootstrap,
+/// RafsV5ExtBlobEntry is appended to the tail of bootstrap,
 /// can be used as an extended table for the original blob table.
 // This disk structure is well defined and rafs aligned.
 #[repr(C)]
