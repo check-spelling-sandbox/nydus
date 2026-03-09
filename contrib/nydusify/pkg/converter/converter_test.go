@@ -210,10 +210,10 @@ func TestConvertModelArtifact(t *testing.T) {
 		})
 		defer packFinBootPatches.Reset()
 
-		getModelConfigPaches := gomonkey.ApplyMethod(mockRemoteHandler, "GetModelConfig", func() (*modelspec.Model, error) {
+		getModelConfigPatches := gomonkey.ApplyMethod(mockRemoteHandler, "GetModelConfig", func() (*modelspec.Model, error) {
 			return &modelspec.Model{}, nil
 		})
-		defer getModelConfigPaches.Reset()
+		defer getModelConfigPatches.Reset()
 
 		pushManifestPatches := gomonkey.ApplyFunc(pushManifest, func(context.Context, Opt, modelspec.Model, []ocispec.Descriptor, parser.Image, string) error {
 			return nil
@@ -297,10 +297,10 @@ func TestConvertModelArtifact(t *testing.T) {
 		})
 		defer packFinBootPatches.Reset()
 
-		getModelConfigPaches := gomonkey.ApplyMethod(mockRemoteHandler, "GetModelConfig", func() (*modelspec.Model, error) {
+		getModelConfigPatches := gomonkey.ApplyMethod(mockRemoteHandler, "GetModelConfig", func() (*modelspec.Model, error) {
 			return nil, errors.New("run getModelConfig mock error")
 		})
-		defer getModelConfigPaches.Reset()
+		defer getModelConfigPatches.Reset()
 
 		err := convertModelArtifact(context.Background(), opt)
 		assert.Error(t, err)
@@ -327,10 +327,10 @@ func TestConvertModelArtifact(t *testing.T) {
 		})
 		defer packFinBootPatches.Reset()
 
-		getModelConfigPaches := gomonkey.ApplyMethod(mockRemoteHandler, "GetModelConfig", func() (*modelspec.Model, error) {
+		getModelConfigPatches := gomonkey.ApplyMethod(mockRemoteHandler, "GetModelConfig", func() (*modelspec.Model, error) {
 			return &modelspec.Model{}, nil
 		})
-		defer getModelConfigPaches.Reset()
+		defer getModelConfigPatches.Reset()
 
 		pushManifestPatches := gomonkey.ApplyFunc(pushManifest, func(context.Context, Opt, modelspec.Model, []ocispec.Descriptor, parser.Image, string) error {
 			return errors.New("push manifest mock error")
@@ -400,11 +400,11 @@ func TestPackFinalBootstrap(t *testing.T) {
 		})
 		defer unpackEntryPatches.Reset()
 
-		packToTarPaches := gomonkey.ApplyFunc(snapConv.PackToTar, func([]snapConv.File, bool) io.ReadCloser {
+		packToTarPatches := gomonkey.ApplyFunc(snapConv.PackToTar, func([]snapConv.File, bool) io.ReadCloser {
 			var buff bytes.Buffer
 			return io.NopCloser(&buff)
 		})
-		defer packToTarPaches.Reset()
+		defer packToTarPatches.Reset()
 
 		ioCopyPatches := gomonkey.ApplyFunc(io.Copy, func(io.Writer, io.Reader) (int64, error) {
 			return 0, nil
