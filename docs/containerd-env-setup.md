@@ -94,7 +94,7 @@ sudo rm -rf /var/lib/containerd/io.containerd.snapshotter.v1.nydus
 ```
 
 3. Start `containerd-nydus-grpc` (nydus snapshotter):
-Optionally, a TOML based nydus-snapshotter configuration file can be provided by appending `--config <CONFIG>` when starting nydus-snapshotter if you want fine-grained control items. An example configuration file can be found [here](https://github.com/containerd/nydus-snapshotter/blob/main/misc/snapshotter/config.toml)
+Optionally, a TOML based nydus-snapshotter configuration file can be provided by appending `--config <CONFIG>` when starting nydus-snapshotter if you want fine-grained control items. See an [example configuration file](https://github.com/containerd/nydus-snapshotter/blob/main/misc/snapshotter/config.toml)
 
 ```bash
 sudo /usr/bin/containerd-nydus-grpc \
