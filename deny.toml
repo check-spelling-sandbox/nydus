@@ -86,7 +86,7 @@ exceptions = [
 # adding a clarification entry for it allows you to manually specify the
 # licensing information
 #[[licenses.clarify]]
-# The name of the crate the clarification applies to
+# The name of the crate to which the clarification applies
 #name = "ring"
 # The optional version constraint for the crate
 #version = "*"
