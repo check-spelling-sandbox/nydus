@@ -626,7 +626,7 @@ fn prepare_cmd_args(bti_string: &'static str) -> App {
             .arg(
                 Arg::new("output-blob-dir")
                     .long("output-blob-dir")
-                    .help("Directroy path for storing optimized blob"),
+                    .help("Directory path for storing optimized blob"),
             )
             .arg(
                 arg_output_json.clone(),
