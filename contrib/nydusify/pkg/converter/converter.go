@@ -536,8 +536,8 @@ func pushManifest(
 	return nil
 }
 
-func getSourceManifestSubject(ctx context.Context, sourceRef string, inscure, plainHTTP bool) (*ocispec.Descriptor, error) {
-	remoter, err := pkgPvd.DefaultRemote(sourceRef, inscure)
+func getSourceManifestSubject(ctx context.Context, sourceRef string, insecure, plainHTTP bool) (*ocispec.Descriptor, error) {
+	remoter, err := pkgPvd.DefaultRemote(sourceRef, insecure)
 	if err != nil {
 		return nil, errors.Wrap(err, "create remote")
 	}
