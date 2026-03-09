@@ -345,7 +345,7 @@ impl Endpoint {
     /// * - SocketError: other socket related errors.
     /// * - PartialMessage: received a partial message.
     pub fn send_header(&mut self, hdr: &MsgHeader, fds: Option<&[RawFd]>) -> Result<()> {
-        // Safe because there can't be other mutable referance to hdr.
+        // Safe because there can't be other mutable reference to hdr.
         let iovs = unsafe {
             [slice::from_raw_parts(
                 hdr as *const MsgHeader as *const u8,
@@ -377,7 +377,7 @@ impl Endpoint {
         if mem::size_of::<T>() > MAX_MSG_SIZE {
             return Err(Error::OversizedMsg);
         }
-        // Safe because there can't be other mutable referance to hdr and body.
+        // Safe because there can't be other mutable reference to hdr and body.
         let iovs = unsafe {
             [
                 slice::from_raw_parts(
