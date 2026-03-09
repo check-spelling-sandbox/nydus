@@ -93,7 +93,7 @@ cache_dir = ""
 public_key_file = ""
 validate_signature = false
 
-# The configuraions for features that are not production ready
+# The configurations for features that are not production ready
 [experimental]
 # Whether to enable stargz support
 enable_stargz = false
