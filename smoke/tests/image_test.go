@@ -193,12 +193,12 @@ func (i *ImageTestSuite) TestGenerateChunkdicts() test.Generator {
 		ctx := tool.DefaultContext(i.T)
 		ctx.Build.FSVersion = scenario.GetString(paramFSVersion)
 		return "chunkdict:" + scenario.Str(), func(t *testing.T) {
-			i.TestChundict(t, *ctx, sources)
+			i.TestChunkdict(t, *ctx, sources)
 		}
 	}
 }
 
-func (i *ImageTestSuite) TestChundict(t *testing.T, ctx tool.Context, images []string) {
+func (i *ImageTestSuite) TestChunkdict(t *testing.T, ctx tool.Context, images []string) {
 	trainImage := images[:len(images)-1]
 	testImage := images[len(images)-1]
 
