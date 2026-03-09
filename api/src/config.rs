@@ -749,7 +749,7 @@ pub struct FileCacheConfig {
     /// Enable convergent encryption for chunk deduplication.
     #[serde(default)]
     pub enable_convergent_encryption: bool,
-    /// Key for data encryption, a heximal representation of [u8; 32].
+    /// Key for data encryption, a hexadecimal representation of [u8; 32].
     #[serde(default)]
     pub encryption_key: String,
 }
