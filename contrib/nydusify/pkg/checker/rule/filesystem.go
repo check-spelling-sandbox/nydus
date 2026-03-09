@@ -71,7 +71,7 @@ type RegistryBackendConfig struct {
 
 func (node *Node) String() string {
 	return fmt.Sprintf(
-		"path: %s, size: %d, mode: %d, rdev: %d, symink: %s, uid: %d, gid: %d, "+
+		"path: %s, size: %d, mode: %d, rdev: %d, symlink: %s, uid: %d, gid: %d, "+
 			"xattrs: %v, hash: %s", node.Path, node.Size, node.Mode, node.Rdev, node.Symlink,
 		node.UID, node.GID, node.Xattrs, hex.EncodeToString(node.Hash),
 	)
