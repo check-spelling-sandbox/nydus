@@ -56,7 +56,7 @@ pub(crate) enum Error {
     /// memfd file creation error
     MemFdCreateError,
     /// File truncate error
-    FileTrucateError,
+    FileTruncateError,
     /// memfd file seal errors
     MemFdSealError,
 }
@@ -81,8 +81,8 @@ impl std::fmt::Display for Error {
             Error::MemFdCreateError => {
                 write!(f, "handler failed to allocate memfd during get_inflight_fd")
             }
-            Error::FileTrucateError => {
-                write!(f, "handler failed to trucate memfd during get_inflight_fd")
+            Error::FileTruncateError => {
+                write!(f, "handler failed to truncate memfd during get_inflight_fd")
             }
             Error::MemFdSealError => write!(
                 f,
@@ -113,7 +113,7 @@ impl Error {
             Error::SocketError(_) | Error::SocketConnect(_) => false,
             Error::FeatureMismatch => false,
             Error::ReqHandlerError(_) => false,
-            Error::MemFdCreateError | Error::FileTrucateError | Error::MemFdSealError => false,
+            Error::MemFdCreateError | Error::FileTruncateError | Error::MemFdSealError => false,
         }
     }
 }
