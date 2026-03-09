@@ -32,7 +32,7 @@ The following Benchmarking results demonstrate that Nydus images significantly o
 ***Provide Fast, Secure And Easy Access to Data Distribution***
 
 - **Performance**: Second-level container startup speed, millisecond-level function computation code package loading speed.
-- **Low Cost**: Written in memory-safed language `Rust`, numerous optimizations help improve memory, CPU, and network consumption.
+- **Low Cost**: Written in memory-safe language `Rust`, numerous optimizations help improve memory, CPU, and network consumption.
 - **Flexible**: Supports container runtimes such as [runC](https://github.com/opencontainers/runc) and [Kata](https://github.com/kata-containers), and provides [Confidential Containers](https://github.com/confidential-containers) and vulnerability scanning capabilities
 - **Security**: End to end data integrity check, Supply Chain Attack can be detected and avoided at runtime.
 
