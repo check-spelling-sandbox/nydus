@@ -539,7 +539,7 @@ pub fn export_backend_metrics(name: &Option<String>) -> IoStatsResult<String> {
     }
 }
 
-/// Export blob cache metircs.
+/// Export blob cache metrics.
 pub fn export_blobcache_metrics(id: &Option<String>) -> IoStatsResult<String> {
     let metrics = BLOBCACHE_METRICS.read().unwrap();
 
