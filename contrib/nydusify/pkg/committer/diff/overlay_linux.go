@@ -121,7 +121,7 @@ func (w *cancellableWriter) Write(p []byte) (int, error) {
 	return w.w.Write(p)
 }
 
-// Changes is continuty's `fs.Change`-like method but leverages overlayfs's
+// Changes is continuity's `fs.Change`-like method but leverages overlayfs's
 // "upperdir" for computing the diff. "upperdirView" is overlayfs mounted view of
 // the upperdir that doesn't contain whiteouts. This is used for computing
 // changes under opaque directories.
@@ -296,7 +296,7 @@ func checkRedirect(upperdir string, path string, f os.FileInfo) (bool, error) {
 	return false, nil
 }
 
-// sameDirent performs continity-compatible comparison of files and directories.
+// sameDirent performs continuity-compatible comparison of files and directories.
 // https://github.com/containerd/continuity/blob/v0.1.0/fs/path.go#L91-L133
 // This will only do a slow content comparison of two files if they have all the
 // same metadata and both have truncated nanosecond mtime timestamps. In practice,
