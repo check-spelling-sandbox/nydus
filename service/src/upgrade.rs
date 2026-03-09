@@ -632,7 +632,7 @@ mod tests {
         let cmd = FsBackendMountCmd {
             fs_type: FsBackendType::Rafs,
             config: config.to_string(),
-            mountpoint: "testmonutount".to_string(),
+            mountpoint: "testmount".to_string(),
             source: "testsource".to_string(),
             prefetch_files: Some(vec!["testfile".to_string()]),
         };
@@ -643,7 +643,7 @@ mod tests {
         assert!(upgrade_mgr
             .fuse_daemon_stat
             .fs_mount_cmd_map
-            .contains_key("testmonutount"));
+            .contains_key("testmount"));
         assert!(upgrade_mgr.update_mounts_state(cmd).is_ok());
 
         let backend_stat = FusedevBackendState::from(&upgrade_mgr.fuse_daemon_stat);
@@ -651,16 +651,16 @@ mod tests {
 
         let stat = FusedevState::from(&backend_stat);
         assert_eq!(stat.fuse_conn_id, upgrade_mgr.fuse_daemon_stat.fuse_conn_id);
-        assert!(stat.fs_mount_cmd_map.contains_key("testmonutount"));
+        assert!(stat.fs_mount_cmd_map.contains_key("testmount"));
 
         let umount_cmd: FsBackendUmountCmd = FsBackendUmountCmd {
-            mountpoint: "testmonutount".to_string(),
+            mountpoint: "testmount".to_string(),
         };
         upgrade_mgr.remove_mounts_state(umount_cmd);
         assert!(!upgrade_mgr
             .fuse_daemon_stat
             .fs_mount_cmd_map
-            .contains_key("testmonutount"));
+            .contains_key("testmount"));
     }
 
     #[test]
