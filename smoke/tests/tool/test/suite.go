@@ -110,7 +110,7 @@ type Generator func() (name string, testCase Case)
 //	    --- FAIL: Test1/TestFail (0.00s)
 //	    --- PASS: Test1/TestOk (0.00s)
 //
-// Example2: asynchronized way
+// Example2: asynchronous way
 //
 //	import (
 //	    "fmt"
