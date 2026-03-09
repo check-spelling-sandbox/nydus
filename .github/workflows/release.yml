@@ -186,7 +186,7 @@ jobs:
           ${{ env.tarball }}
           ${{ env.tarball_shasum }}
 
-  # use a seperate job for darwin because github action if: condition cannot handle && properly.
+  # use a separate job for darwin because github action if: condition cannot handle && properly.
   prepare-tarball-darwin:
     runs-on: ubuntu-latest-16-cores
     strategy:
