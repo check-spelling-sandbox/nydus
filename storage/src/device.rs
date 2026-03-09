@@ -425,7 +425,7 @@ impl BlobInfo {
         self.prefetch_size = size as u32;
     }
 
-    /// Check whether this blob is for an stargz image.
+    /// Check whether this blob is for a stargz image.
     pub fn is_legacy_stargz(&self) -> bool {
         self.is_legacy_stargz
     }

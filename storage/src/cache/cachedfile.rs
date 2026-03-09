@@ -207,7 +207,7 @@ pub(crate) struct FileCacheEntry {
     pub(crate) is_cache_encrypted: bool,
     // Whether direct chunkmap is used.
     pub(crate) is_direct_chunkmap: bool,
-    // The blob is for an stargz image.
+    // The blob is for a stargz image.
     pub(crate) is_legacy_stargz: bool,
     // The blob is for an RAFS filesystem in `TARFS` mode.
     pub(crate) is_tarfs: bool,
@@ -1352,7 +1352,7 @@ impl FileCacheEntry {
         let mut d = DataBuffer::Allocated(alloc_buf(d_size));
 
         // Try to read and validate data from cache if:
-        // - it's an stargz image and the chunk is ready.
+        // - it's a stargz image and the chunk is ready.
         // - chunk data validation is enabled.
         // - digested or dummy chunk map is used.
         let is_ready = self.chunk_map.is_ready(chunk.as_ref())?;

@@ -292,21 +292,21 @@ impl<R: Read> ZranGenerator<R> {
         &self.ci_array
     }
 
-    /// Set minimal compressed size to emit an random access slice.
+    /// Set minimal compressed size to emit a random access slice.
     ///
     /// Please ensure "min_compressed_size * 2 <= max_compressed_size".
     pub fn set_min_compressed_size(&mut self, sz: u64) {
         self.min_comp_size = sz;
     }
 
-    /// Set maximum compressed size to emit an random access slice.
+    /// Set maximum compressed size to emit a random access slice.
     ///
     /// Please ensure "min_compressed_size * 2 <= max_compressed_size".
     pub fn set_max_compressed_size(&mut self, sz: u64) {
         self.max_comp_size = sz;
     }
 
-    /// Set maximum uncompressed size to emit an random access slice.
+    /// Set maximum uncompressed size to emit a random access slice.
     ///
     /// Please ensure "min_compressed_size * 2 < max_compressed_size".
     pub fn set_max_uncompressed_size(&mut self, sz: u64) {

@@ -176,7 +176,7 @@ impl Rafs {
         Ok(())
     }
 
-    /// Import an rafs bootstrap to initialize the filesystem instance.
+    /// Import a rafs bootstrap to initialize the filesystem instance.
     pub fn import(
         &mut self,
         r: RafsIoReader,

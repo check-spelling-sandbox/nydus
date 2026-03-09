@@ -357,7 +357,7 @@ impl OndiskInodeWrapper {
         state.file_map.get_ref::<RafsV5Inode>(self.offset).unwrap()
     }
 
-    /// Get an reference to the file name string.
+    /// Get a reference to the file name string.
     ///
     /// # Safety
     /// It depends on Self::validate() to ensure valid memory layout.

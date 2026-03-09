@@ -6,7 +6,7 @@
 //!
 //! The [Network Block Device](https://github.com/NetworkBlockDevice/nbd/blob/master/doc/proto.md)
 //! is a Linux-originated lightweight block access protocol that allows one to export a block device
-//! to a client. RAFSv6 images have an block address based encoding, so an RAFSv6 image can be
+//! to a client. RAFSv6 images have a block address based encoding, so an RAFSv6 image can be
 //! exposed as a block device. The [NbdService] exposes a RAFSv6 image as a block device based on
 //! the Linux Network Block Device driver.
 
