@@ -291,7 +291,7 @@ impl Endpoint {
     }
 
     /// Sends all bytes from scatter-gather vectors over the socket with optional attached file
-    /// descriptors. Will loop until all data has been transfered.
+    /// descriptors. Will loop until all data has been transferred.
     ///
     /// # Return:
     /// * - number of bytes sent on success
