@@ -88,23 +88,23 @@ func TestPrettyDump(t *testing.T) {
 
 func TestPullBootstrap(t *testing.T) {
 	opt := Opt{
-		WorkDir: "/tmp/nydusify/fsviwer",
+		WorkDir: "/tmp/nydusify/fsviewer",
 	}
-	fsViwer := FsViewer{
+	fsViewer := FsViewer{
 		Opt: opt,
 		NydusdConfig: tool.NydusdConfig{
 			ExternalBackendConfigPath: "/tmp/backend.json",
 		},
 	}
-	os.MkdirAll(fsViwer.WorkDir, 0755)
-	defer os.RemoveAll(fsViwer.WorkDir)
+	os.MkdirAll(fsViewer.WorkDir, 0755)
+	defer os.RemoveAll(fsViewer.WorkDir)
 	targetParsed := &parser.Parsed{
 		NydusImage: &parser.Image{},
 	}
-	err := fsViwer.PullBootstrap(context.Background(), targetParsed)
+	err := fsViewer.PullBootstrap(context.Background(), targetParsed)
 	assert.Error(t, err)
 	callCount := 0
-	getBootstrapPatches := gomonkey.ApplyPrivateMethod(&fsViwer, "getBootstrapFile", func(context.Context, *parser.Image, string, string) error {
+	getBootstrapPatches := gomonkey.ApplyPrivateMethod(&fsViewer, "getBootstrapFile", func(context.Context, *parser.Image, string, string) error {
 		if callCount == 0 {
 			callCount++
 			return nil
@@ -112,7 +112,7 @@ func TestPullBootstrap(t *testing.T) {
 		return errors.New("failed to pull Nydus bootstrap layer mock error")
 	})
 	defer getBootstrapPatches.Reset()
-	err = fsViwer.PullBootstrap(context.Background(), targetParsed)
+	err = fsViewer.PullBootstrap(context.Background(), targetParsed)
 	assert.Error(t, err)
 }
 
@@ -123,9 +123,9 @@ func TestPullBootstrapWithoutNydusImage(t *testing.T) {
 
 func TestGetBootstrapFile(t *testing.T) {
 	opt := Opt{
-		WorkDir: "/tmp/nydusify/fsviwer",
+		WorkDir: "/tmp/nydusify/fsviewer",
 	}
-	fsViwer := FsViewer{
+	fsViewer := FsViewer{
 		Opt:    opt,
 		Parser: &parser.Parser{},
 		NydusdConfig: tool.NydusdConfig{
@@ -133,34 +133,34 @@ func TestGetBootstrapFile(t *testing.T) {
 		},
 	}
 	t.Run("Run pull bootstrap failed", func(t *testing.T) {
-		pullNydusBootstrapPatches := gomonkey.ApplyMethod(fsViwer.Parser, "PullNydusBootstrap", func(*parser.Parser, context.Context, *parser.Image) (io.ReadCloser, error) {
+		pullNydusBootstrapPatches := gomonkey.ApplyMethod(fsViewer.Parser, "PullNydusBootstrap", func(*parser.Parser, context.Context, *parser.Image) (io.ReadCloser, error) {
 			return nil, errors.New("failed to pull Nydus bootstrap layer mock error")
 		})
 		defer pullNydusBootstrapPatches.Reset()
 		image := &parser.Image{}
-		err := fsViwer.getBootstrapFile(context.Background(), image, "", "")
+		err := fsViewer.getBootstrapFile(context.Background(), image, "", "")
 		assert.Error(t, err)
 	})
 
 	t.Run("Run unpack failed", func(t *testing.T) {
 		var buf bytes.Buffer
-		pullNydusBootstrapPatches := gomonkey.ApplyMethod(fsViwer.Parser, "PullNydusBootstrap", func(*parser.Parser, context.Context, *parser.Image) (io.ReadCloser, error) {
+		pullNydusBootstrapPatches := gomonkey.ApplyMethod(fsViewer.Parser, "PullNydusBootstrap", func(*parser.Parser, context.Context, *parser.Image) (io.ReadCloser, error) {
 			return io.NopCloser(&buf), nil
 		})
 		defer pullNydusBootstrapPatches.Reset()
 		image := &parser.Image{}
-		err := fsViwer.getBootstrapFile(context.Background(), image, "", "")
+		err := fsViewer.getBootstrapFile(context.Background(), image, "", "")
 		assert.Error(t, err)
 	})
 
 	t.Run("Run normal", func(t *testing.T) {
 		target := filepath.Join(t.TempDir(), "nydus_bootstrap")
-		pullNydusBootstrapPatches := gomonkey.ApplyMethod(fsViwer.Parser, "PullNydusBootstrap", func(*parser.Parser, context.Context, *parser.Image) (io.ReadCloser, error) {
+		pullNydusBootstrapPatches := gomonkey.ApplyMethod(fsViewer.Parser, "PullNydusBootstrap", func(*parser.Parser, context.Context, *parser.Image) (io.ReadCloser, error) {
 			return buildBootstrapArchive(t, utils.BootstrapFileNameInLayer, []byte("bootstrap-data")), nil
 		})
 		defer pullNydusBootstrapPatches.Reset()
 		image := &parser.Image{}
-		err := fsViwer.getBootstrapFile(context.Background(), image, utils.BootstrapFileNameInLayer, target)
+		err := fsViewer.getBootstrapFile(context.Background(), image, utils.BootstrapFileNameInLayer, target)
 		assert.NoError(t, err)
 		content, err := os.ReadFile(target)
 		require.NoError(t, err)
@@ -179,10 +179,10 @@ func TestHandleExternalBackendConfig(t *testing.T) {
 	bkdConfig, err := json.Marshal(backend)
 	require.NoError(t, err)
 	opt := Opt{
-		WorkDir:       "/tmp/nydusify/fsviwer",
+		WorkDir:       "/tmp/nydusify/fsviewer",
 		BackendConfig: string(bkdConfig),
 	}
-	fsViwer := FsViewer{
+	fsViewer := FsViewer{
 		Opt:    opt,
 		Parser: &parser.Parser{},
 		NydusdConfig: tool.NydusdConfig{
@@ -190,32 +190,32 @@ func TestHandleExternalBackendConfig(t *testing.T) {
 		},
 	}
 	t.Run("Run not exist", func(t *testing.T) {
-		err := fsViwer.handleExternalBackendConfig()
+		err := fsViewer.handleExternalBackendConfig()
 		assert.NoError(t, err)
 	})
 
 	t.Run("Run normal", func(t *testing.T) {
-		require.NoError(t, os.MkdirAll(fsViwer.WorkDir, 0755))
-		require.NoError(t, os.WriteFile(fsViwer.NydusdConfig.ExternalBackendConfigPath, []byte("{}"), 0644))
+		require.NoError(t, os.MkdirAll(fsViewer.WorkDir, 0755))
+		require.NoError(t, os.WriteFile(fsViewer.NydusdConfig.ExternalBackendConfigPath, []byte("{}"), 0644))
 
 		buildExternalConfigPatches := gomonkey.ApplyFunc(utils.BuildRuntimeExternalBackendConfig, func(string, string) error {
 			return nil
 		})
 		defer buildExternalConfigPatches.Reset()
-		err := fsViwer.handleExternalBackendConfig()
+		err := fsViewer.handleExternalBackendConfig()
 		assert.NoError(t, err)
 	})
 
 	t.Run("Run build external backend config failed", func(t *testing.T) {
-		require.NoError(t, os.MkdirAll(fsViwer.WorkDir, 0755))
-		require.NoError(t, os.WriteFile(fsViwer.NydusdConfig.ExternalBackendConfigPath, []byte("{}"), 0644))
+		require.NoError(t, os.MkdirAll(fsViewer.WorkDir, 0755))
+		require.NoError(t, os.WriteFile(fsViewer.NydusdConfig.ExternalBackendConfigPath, []byte("{}"), 0644))
 
 		buildExternalConfigPatches := gomonkey.ApplyFunc(utils.BuildRuntimeExternalBackendConfig, func(string, string) error {
 			return errors.New("build external backend config failed")
 		})
 		defer buildExternalConfigPatches.Reset()
 
-		err := fsViwer.handleExternalBackendConfig()
+		err := fsViewer.handleExternalBackendConfig()
 		assert.Error(t, err)
 	})
 }
