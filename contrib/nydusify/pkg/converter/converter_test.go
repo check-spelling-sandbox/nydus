@@ -578,10 +578,10 @@ func TestGetSourceManifestSubject(t *testing.T) {
 		})
 		defer defaultRemotePatches.Reset()
 
-		remoterReolvePatches := gomonkey.ApplyMethod(remoter, "Resolve", func(*remote.Remote, context.Context) (*ocispec.Descriptor, error) {
+		remoterResolvePatches := gomonkey.ApplyMethod(remoter, "Resolve", func(*remote.Remote, context.Context) (*ocispec.Descriptor, error) {
 			return nil, errors.New("resolve failed mock error timeout")
 		})
-		defer remoterReolvePatches.Reset()
+		defer remoterResolvePatches.Reset()
 		_, err := getSourceManifestSubject(context.Background(), "", false, false)
 		assert.Error(t, err)
 	})
@@ -592,10 +592,10 @@ func TestGetSourceManifestSubject(t *testing.T) {
 		})
 		defer defaultRemotePatches.Reset()
 
-		remoterReolvePatches := gomonkey.ApplyMethod(remoter, "Resolve", func(*remote.Remote, context.Context) (*ocispec.Descriptor, error) {
+		remoterResolvePatches := gomonkey.ApplyMethod(remoter, "Resolve", func(*remote.Remote, context.Context) (*ocispec.Descriptor, error) {
 			return &ocispec.Descriptor{}, nil
 		})
-		defer remoterReolvePatches.Reset()
+		defer remoterResolvePatches.Reset()
 		desc, err := getSourceManifestSubject(context.Background(), "", false, false)
 		assert.NoError(t, err)
 		assert.NotNil(t, desc)
