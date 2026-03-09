@@ -48,7 +48,7 @@ pub const EROFS_EXT_SUPER_BLOCK_SIZE: u16 = 256;
 pub const EROFS_DEVTABLE_OFFSET: u16 =
     EROFS_SUPER_OFFSET + EROFS_SUPER_BLOCK_SIZE + EROFS_EXT_SUPER_BLOCK_SIZE;
 
-/// Offseet for inode format flags: compact or extended.
+/// Offset for inode format flags: compact or extended.
 pub const EROFS_I_VERSION_BIT: u16 = 0;
 /// Number of bits for inode format flags.
 pub const EROFS_I_VERSION_BITS: u16 = 1;
