@@ -54,19 +54,19 @@ func (c *Config) ExecuteContext(ctx context.Context, writer io.Writer, program s
 	}
 
 	// Prepare command
-	var srderr bytes.Buffer
+	var stderr bytes.Buffer
 	rc, err := cmd.StdoutPipe()
 	if err != nil {
 		return "", fmt.Errorf("open stdout pipe: %v", err)
 	}
 	defer rc.Close()
 
-	cmd.Stderr = &srderr
+	cmd.Stderr = &stderr
 	cmd.Args = append(cmd.Args, program)
 	cmd.Args = append(cmd.Args, args...)
 
 	if err := cmd.Start(); err != nil {
-		return srderr.String(), err
+		return stderr.String(), err
 	}
 
 	// HACK: we can't wait rc.Close happen automatically when process
@@ -82,10 +82,10 @@ func (c *Config) ExecuteContext(ctx context.Context, writer io.Writer, program s
 	}()
 
 	if _, err := io.Copy(writer, rc); err != nil {
-		return srderr.String(), err
+		return stderr.String(), err
 	}
 
-	return srderr.String(), cmd.Wait()
+	return stderr.String(), cmd.Wait()
 }
 
 func (c *Config) buildCommand(ctx context.Context) (*exec.Cmd, error) {
