@@ -15,7 +15,7 @@ import (
 const (
 	// Extra mount option to pass Nydus specific information from snapshotter to runtime through containerd.
 	extraOptionKey = "extraoption="
-	// Kata virtual volume infmation passed from snapshotter to runtime through containerd, superset of `extraOptionKey`.
+	// Kata virtual volume information passed from snapshotter to runtime through containerd, superset of `extraOptionKey`.
 	// Please refer to `KataVirtualVolume` in https://github.com/kata-containers/kata-containers/blob/main/src/libs/kata-types/src/mount.rs
 	kataVolumeOptionKey = "io.katacontainers.volume="
 )
