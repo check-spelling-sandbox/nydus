@@ -297,7 +297,7 @@ mod tests {
     }
 
     #[test]
-    fn test_compress_algorithm_ztsd() {
+    fn test_compress_algorithm_zstd() {
         let buf = vec![0x2u8; 4097];
         let mut decompressed = vec![0; buf.len()];
         let (compressed, _) = compress(&buf, Algorithm::Zstd).unwrap();
