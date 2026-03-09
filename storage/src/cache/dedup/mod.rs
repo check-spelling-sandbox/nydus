@@ -200,7 +200,7 @@ impl CasMgr {
             }
         }
 
-        // If there are any non-existent blobs, delete them from the database.
+        // If there are any nonexistent blobs, delete them from the database.
         if !blobs_not_exist.is_empty() {
             self.db.delete_blobs(&blobs_not_exist).map_err(|e| {
                 warn!("failed to delete blobs: {}", e);
@@ -210,7 +210,7 @@ impl CasMgr {
 
         let mut guard = self.fds.write().unwrap();
         for path in blobs_not_exist {
-            // Remove the non-existent blob paths from the cache.
+            // Remove the nonexistent blob paths from the cache.
             guard.remove(&path);
         }
 
@@ -386,7 +386,7 @@ mod tests {
         let dbfile = TempFile::new().unwrap();
         let mgr = CasMgr::new(dbfile.as_path()).unwrap();
 
-        // Add a chunk record pointing to a non-existent file
+        // Add a chunk record pointing to a nonexistent file
         mgr.record_chunk_raw("test:chunk123", "/nonexistent/path", 0)
             .unwrap();
 

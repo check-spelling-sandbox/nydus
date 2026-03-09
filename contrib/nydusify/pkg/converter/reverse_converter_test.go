@@ -328,7 +328,7 @@ func TestReverseConvertErrorHandling(t *testing.T) {
 		assert.Contains(t, err.Error(), "parse push retry delay")
 	})
 
-	t.Run("Test with non-existent work directory", func(t *testing.T) {
+	t.Run("Test with nonexistent work directory", func(t *testing.T) {
 		// Skip if nydus-image tool is not available
 		skipIfNydusImageNotAvailable(t)
 

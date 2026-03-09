@@ -49,7 +49,7 @@ func TestRegistryUpload(t *testing.T) {
 func TestRegistryUploadFailuresAndHelpers(t *testing.T) {
 	registry := &Registry{remote: &remote.Remote{}}
 
-	_, err := registry.Upload(context.Background(), "205eed24cbec29ad9cb4593a73168ef1803402370a82f7d51ce25646fc2f943a", "/non-existent", 1, false)
+	_, err := registry.Upload(context.Background(), "205eed24cbec29ad9cb4593a73168ef1803402370a82f7d51ce25646fc2f943a", "/nonexistent", 1, false)
 	require.ErrorContains(t, err, "Open blob file")
 
 	tmp, err := os.CreateTemp(t.TempDir(), "blob-*")

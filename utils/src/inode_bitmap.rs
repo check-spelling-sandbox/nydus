@@ -218,7 +218,7 @@ mod tests {
         assert!(!m.is_set(42));
         assert!(!m.is_set(0));
 
-        // clear on non-existent inode is a no-op (None path in if-let)
+        // clear on nonexistent inode is a no-op (None path in if-let)
         m.clear(99); // Should not panic
         assert!(!m.is_set(99));
 

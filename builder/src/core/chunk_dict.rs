@@ -375,7 +375,7 @@ mod tests {
         dict.set_real_blob_idx(1, 10);
         assert_eq!(dict.get_real_blob_idx(1), Some(10));
 
-        // Non-existent mapping
+        // Nonexistent mapping
         assert_eq!(dict.get_real_blob_idx(99), None);
     }
 
