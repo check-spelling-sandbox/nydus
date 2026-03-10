@@ -610,7 +610,7 @@ impl Endpoint {
     /// * - SocketBroken: the underline socket is broken.
     /// * - SocketError: other socket related errors.
     /// * - PartialMessage: received a partial message.
-    /// * - InvalidMessage: received a invalid message.
+    /// * - InvalidMessage: received an invalid message.
     pub fn recv_header(&mut self) -> Result<(MsgHeader, Option<Vec<File>>)> {
         let mut hdr = MsgHeader::default();
         let mut iovs = [iovec {
@@ -639,7 +639,7 @@ impl Endpoint {
     /// * - SocketBroken: the underline socket is broken.
     /// * - SocketError: other socket related errors.
     /// * - PartialMessage: received a partial message.
-    /// * - InvalidMessage: received a invalid message.
+    /// * - InvalidMessage: received an invalid message.
     pub fn recv_body<T: ByteValued + Sized + MsgValidator>(
         &mut self,
     ) -> Result<(MsgHeader, T, Option<Vec<File>>)> {
@@ -681,7 +681,7 @@ impl Endpoint {
     /// * - SocketBroken: the underline socket is broken.
     /// * - SocketError: other socket related errors.
     /// * - PartialMessage: received a partial message.
-    /// * - InvalidMessage: received a invalid message.
+    /// * - InvalidMessage: received an invalid message.
     pub fn recv_body_into_buf(
         &mut self,
         buf: &mut [u8],
@@ -720,7 +720,7 @@ impl Endpoint {
     /// * - SocketBroken: the underline socket is broken.
     /// * - SocketError: other socket related errors.
     /// * - PartialMessage: received a partial message.
-    /// * - InvalidMessage: received a invalid message.
+    /// * - InvalidMessage: received an invalid message.
     #[cfg_attr(feature = "cargo-clippy", allow(clippy::type_complexity))]
     pub fn recv_payload_into_buf<T: ByteValued + Sized + MsgValidator>(
         &mut self,

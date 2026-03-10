@@ -709,7 +709,7 @@ impl Executor {
             }
             ("icheck", Some(argument)) => {
                 let ino: u64 = argument.parse().map_err(|_| {
-                    println!("Wrong INODE is specified. Is it a inode number?");
+                    println!("Wrong INODE is specified. Is it an inode number?");
                     ExecuteError::ArgumentParse
                 })?;
                 inspector.cmd_check_inode(ino)

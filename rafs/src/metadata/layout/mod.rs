@@ -223,7 +223,7 @@ pub const RAFS_XATTR_PREFIXES: [&str; 5] = [
 
 /// Rafs inode extended attributes.
 ///
-/// An extended attribute is a (String, String) pair associated with a inode.
+/// An extended attribute is a (String, String) pair associated with an inode.
 #[derive(Clone, Default)]
 pub struct RafsXAttrs {
     pairs: HashMap<OsString, XattrValue>,

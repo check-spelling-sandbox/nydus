@@ -360,7 +360,7 @@ impl TarBuilder {
         Ok(Node::new(inode, info, self.layer_idx))
     }
 
-    /// Check whether the path is a eStargz special file.
+    /// Check whether the path is an eStargz special file.
     pub fn is_stargz_special_files(&self, path: &Path) -> bool {
         path == Path::new("/stargz.index.json")
             || path == Path::new("/.prefetch.landmark")

@@ -1339,7 +1339,7 @@ pub struct BuildContext {
     /// `decompress_offset` within chunk info. Therefore, provide a new flag
     /// to image tool thus to align chunks in blob with 4k size.
     pub aligned_chunk: bool,
-    /// Add a offset for compressed blob.
+    /// Add an offset for compressed blob.
     pub blob_offset: u64,
     /// Blob chunk compress flag.
     pub compressor: compress::Algorithm,

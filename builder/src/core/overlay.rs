@@ -146,7 +146,7 @@ impl Node {
             && nydus_utils::compact::minor_dev(self.info.rdev) == 0
     }
 
-    /// Check whether the inode (directory) is a overlayfs whiteout opaque.
+    /// Check whether the inode (directory) is an overlayfs whiteout opaque.
     pub fn is_overlayfs_opaque(&self, spec: WhiteoutSpec) -> bool {
         if spec != WhiteoutSpec::Overlayfs || !self.is_dir() {
             return false;
