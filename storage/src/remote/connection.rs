@@ -119,7 +119,7 @@ impl Error {
 }
 
 impl std::convert::From<std::io::Error> for Error {
-    #[allow(unreachable_patterns)] // EWOULDBLOCK equals to EAGAIN on linux
+    #[allow(unreachable_patterns)] // EWOULDBLOCK is equal to EAGAIN on linux
     fn from(err: std::io::Error) -> Self {
         Error::SocketError(err)
     }
@@ -136,7 +136,7 @@ impl std::convert::From<SysError> for Error {
     /// * - Error::SocketRetry: temporary error caused by signals or short of resources.
     /// * - Error::SocketBroken: the underline socket is broken.
     /// * - Error::SocketError: other socket related errors.
-    #[allow(unreachable_patterns)] // EWOULDBLOCK equals to EAGAIN on linux
+    #[allow(unreachable_patterns)] // EWOULDBLOCK is equal to EAGAIN on linux
     fn from(err: SysError) -> Self {
         match err.errno() {
             // The socket is marked nonblocking and the requested operation would block.

@@ -228,7 +228,7 @@ impl<'a> FuseSysfsNotifier<'a> {
 
 #[allow(dead_code)]
 pub struct FusedevFsService {
-    /// Fuse connection ID which usually equals to `st_dev`
+    /// Fuse connection ID which usually is equal to `st_dev`
     pub conn: AtomicU64,
     pub failover_policy: FailoverPolicy,
     pub session: Mutex<FuseSession>,
