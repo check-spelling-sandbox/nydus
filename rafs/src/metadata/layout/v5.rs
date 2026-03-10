@@ -17,7 +17,7 @@
 //! 1) file system version number been bumped to 0x500.
 //! 2) Directory inodes will sequentially assign globally unique `child index` to it's child inodes.
 //!    Two fields, "child_index" and "child_count", have been added to the OndiskInode struct.
-//! 3) For inodes with hard link count as 1, the `child index` equals to its assigned inode number.
+//! 3) For inodes with hard link count as 1, the `child index` equals its assigned inode number.
 //! 4) For inodes with hard link count bigger than 1, the `child index` may be different from the
 //!    assigned inode number. Among those child entries linking to the same inode, there's will be
 //!    one and only one child entry having the inode number as its assigned `child index'.
