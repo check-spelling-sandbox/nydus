@@ -75,7 +75,7 @@ struct TocEntry {
     //
     // Empty means zero or unknown. Otherwise, the value is in UTC RFC3339 format.
     // // ModTime3339 is the modification time of the tar entry. Empty
-    // // means zero or unknown. Otherwise it's in UTC RFC3339
+    // // means zero or unknown. Otherwise, it's in UTC RFC3339
     // // format. Use the ModTime method to access the time.Time value.
     // #[serde(default, alias = "modtime")]
     // mod_time_3339: String,
