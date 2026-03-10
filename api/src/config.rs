@@ -897,7 +897,7 @@ pub struct ProxyConfig {
     /// Interval for proxy health checking, in seconds.
     #[serde(default = "default_check_interval")]
     pub check_interval: u64,
-    /// Replace URL to http to request source registry with proxy, and allow fallback to https if the proxy is unhealthy.
+    /// Replace URL to http to request source registry with proxy, and allow falling back to https if the proxy is unhealthy.
     #[serde(default)]
     pub use_http: bool,
     /// Elapsed time to pause proxy health check when the request is inactive, in seconds.
