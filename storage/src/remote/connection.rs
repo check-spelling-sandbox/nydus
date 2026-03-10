@@ -156,7 +156,7 @@ impl std::convert::From<SysError> for Error {
             // process will also receive a SIGPIPE unless MSG_NOSIGNAL is set.
             libc::EPIPE => Error::SocketBroken(IOError::from_raw_os_error(libc::EPIPE)),
             // Write permission is denied on the destination socket file, or search permission is
-            // denied for one of the directories the path prefix.
+            // denied for one of the directories of the path prefix.
             libc::EACCES => Error::SocketConnect(IOError::from_raw_os_error(libc::EACCES)),
             // Catch all other errors
             e => Error::SocketError(IOError::from_raw_os_error(e)),

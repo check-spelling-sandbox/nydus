@@ -91,7 +91,7 @@ macro_rules! impl_chunkinfo_getter {
 ///
 /// Only the DirectMappingState may store raw pointers.
 /// Other data structures should not store raw pointers, instead they should hold a reference to
-/// the DirectMappingState object and store an offset, so a `pointer` could be reconstruct by
+/// the DirectMappingState object and store a offset, so a `pointer` could be reconstruct by
 /// `DirectMappingState.base + offset`.
 struct DirectMappingState {
     meta: RafsSuperMeta,

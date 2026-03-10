@@ -737,7 +737,7 @@ extern "C" fn zalloc(_ptr: *mut c_void, items: uInt, item_size: uInt) -> *mut c_
 
     unsafe {
         // Allocate the data, and if successful store the size we allocated
-        // at the beginning and then return an offset pointer.
+        // at the beginning and then return a offset pointer.
         let ptr = alloc::alloc(layout) as *mut usize;
         if ptr.is_null() {
             return ptr as *mut c_void;
