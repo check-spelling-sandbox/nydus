@@ -15,7 +15,7 @@
 //! RAFS meta data into process as runtime meta data, so we could parse RAFS on disk meta data on
 //! demand. The V5 meta data format has following changes:
 //! 1) file system version number been bumped to 0x500.
-//! 2) Directory inodes will sequentially assign globally unique `child index` to it's child inodes.
+//! 2) Directory inodes will sequentially assign globally unique `child index` to its child inodes.
 //!    Two fields, "child_index" and "child_count", have been added to the OndiskInode struct.
 //! 3) For inodes with hard link count as 1, the `child index` equals its assigned inode number.
 //! 4) For inodes with hard link count bigger than 1, the `child index` may be different from the
