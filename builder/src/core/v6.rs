@@ -59,7 +59,7 @@ impl Node {
         // update all the inodes's offset according to the new 'meta_addr'.
         self.v6_offset += meta_offset;
         // The EROFS_INODE_FLAT_INLINE layout is valid for directory and symlink only,
-        // so `dirents_offset` is useful for these two types too, otherwise `dirents_offset`
+        // so `dirents_offset` is useful for these two types too; otherwise, `dirents_offset`
         // should always be zero.
         // Enforce the check to avoid overflow of `dirents_offset`.
         if self.is_dir() || self.is_symlink() {

@@ -975,7 +975,7 @@ impl Node {
 
     /// Generate target path by stripping the `root` prefix.
     ///
-    /// Strip the `root` prefix if `path` starts with `root`, otherwise keep `path` as is.
+    /// Strip the `root` prefix if `path` starts with `root`; otherwise, keep `path` as is.
     /// For example:
     /// root: /absolute/path/to/rootfs
     /// path: /absolute/path/to/rootfs/file => /file

@@ -323,7 +323,7 @@ func Copy(ctx context.Context, opt Opt) error {
 				return errors.Wrap(err, "prepare work directory")
 			}
 			// We should only clean up when the work directory not exists
-			// before, otherwise it may delete user data by mistake.
+			// before; otherwise, it may delete user data by mistake.
 			defer os.RemoveAll(opt.WorkDir)
 		} else {
 			return errors.Wrap(err, "stat work directory")

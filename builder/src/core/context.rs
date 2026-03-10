@@ -1132,7 +1132,7 @@ impl BlobManager {
     /// Import all blobs from the global chunk dictionary for later chunk deduplication.
     ///
     /// The order to import blobs from parent bootstrap and chunk dictionary is important.
-    /// All blobs from parent bootstrap must be imported first, otherwise we need to fix blob index
+    /// All blobs from parent bootstrap must be imported first; otherwise, we need to fix blob index
     /// of chunks from parent bootstrap.
     pub fn extend_from_chunk_dict(&mut self, ctx: &BuildContext) -> Result<()> {
         let blobs = self.global_chunk_dict.get_blobs();

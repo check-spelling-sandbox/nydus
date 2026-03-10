@@ -803,7 +803,7 @@ pub struct BlobIoDesc {
     pub offset: u32,
     /// Size of the IO operation
     pub size: u32,
-    /// Whether it's a user initiated IO, otherwise is a storage system internal IO.
+    /// Whether it's a user initiated IO; otherwise, is a storage system internal IO.
     ///
     /// It might be initiated by user io amplification. With this flag, lower device
     /// layer may choose how to prioritize the IO operation.

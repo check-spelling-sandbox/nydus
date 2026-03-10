@@ -253,7 +253,7 @@ Document located at: https://github.com/adamqqqplay/nydus-localdisk/blob/master/
       "type": "registry",
       "config": {
         ...
-        // Registry url scheme, leave empty to automatically detect, otherwise specify to https or http.
+        // Registry url scheme, leave empty to automatically detect; otherwise, specify to https or http.
         "scheme": "",
         // Registry hostname with format `$host:$port`
         "host": "my-registry:5000",

@@ -188,7 +188,7 @@ impl Cipher {
     /// Encrypt plaintext with optional IV and return the encrypted data.
     ///
     /// For XTS, the caller needs to ensure that the top half of key is not identical to the
-    /// bottom half of the key, otherwise the encryption will fail.
+    /// bottom half of the key; otherwise, the encryption will fail.
     pub fn encrypt<'a>(
         &self,
         key: &[u8],

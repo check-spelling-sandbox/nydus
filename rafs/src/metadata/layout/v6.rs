@@ -333,7 +333,7 @@ impl RafsV6SuperBlock {
 }
 
 impl RafsStore for RafsV6SuperBlock {
-    // This method must be called before RafsV6SuperBlockExt::store(), otherwise data written by
+    // This method must be called before RafsV6SuperBlockExt::store(); otherwise, data written by
     // RafsV6SuperBlockExt::store() will be overwritten.
     fn store(&self, w: &mut dyn RafsIoWrite) -> Result<usize> {
         debug_assert!(
