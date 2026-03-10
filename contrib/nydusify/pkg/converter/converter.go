@@ -112,7 +112,7 @@ func Convert(ctx context.Context, opt Opt) error {
 			if err := os.MkdirAll(opt.WorkDir, 0755); err != nil {
 				return errors.Wrap(err, "prepare work directory")
 			}
-			// We should only clean up when the work directory not exists
+			// We should only clean up when the work directory does not exist
 			// before; otherwise, it may delete user data by mistake.
 			defer os.RemoveAll(opt.WorkDir)
 		} else {
@@ -167,7 +167,7 @@ func convertModelFile(ctx context.Context, opt Opt) error {
 			if err := os.MkdirAll(opt.WorkDir, 0755); err != nil {
 				return errors.Wrap(err, "prepare work directory")
 			}
-			// We should only clean up when the work directory not exists
+			// We should only clean up when the work directory does not exist
 			// before; otherwise, it may delete user data by mistake.
 			defer os.RemoveAll(opt.WorkDir)
 		} else {
@@ -238,7 +238,7 @@ func convertModelArtifact(ctx context.Context, opt Opt) error {
 			if err := os.MkdirAll(opt.WorkDir, 0755); err != nil {
 				return errors.Wrap(err, "prepare work directory")
 			}
-			// We should only clean up when the work directory not exists
+			// We should only clean up when the work directory does not exist
 			// before; otherwise, it may delete user data by mistake.
 			defer os.RemoveAll(opt.WorkDir)
 		} else {
