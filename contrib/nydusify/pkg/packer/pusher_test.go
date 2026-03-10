@@ -196,7 +196,7 @@ func TestNewPusher(t *testing.T) {
 		Logger:        logrus.New(),
 	})
 	require.Error(t, err)
-	require.Contains(t, err.Error(), "does not exists")
+	require.Contains(t, err.Error(), "does not exist")
 
 	_, err = NewPusher(NewPusherOpt{
 		Artifact: artifact,

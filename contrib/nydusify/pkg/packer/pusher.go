@@ -45,7 +45,7 @@ func NewPusher(opt NewPusherOpt) (*Pusher, error) {
 		return nil, errors.New("outputDir is required")
 	}
 	if !utils.IsPathExists(opt.OutputDir) {
-		return nil, errors.Errorf("outputDir %q does not exists", opt.OutputDir)
+		return nil, errors.Errorf("outputDir %q does not exist", opt.OutputDir)
 	}
 	backendConfig := opt.BackendConfig
 
