@@ -1316,7 +1316,7 @@ impl TryFrom<&CacheConfig> for CacheConfigV2 {
 /// Configuration information to create blob cache manager.
 #[derive(Clone, Debug, Default, Deserialize, Eq, PartialEq, Serialize)]
 struct FactoryConfig {
-    /// Id of the factory.
+    /// ID of the factory.
     #[serde(default)]
     pub id: String,
     /// Configuration for storage backend.
