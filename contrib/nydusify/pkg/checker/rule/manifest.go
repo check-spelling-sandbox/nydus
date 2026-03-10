@@ -51,7 +51,7 @@ func (rule *ManifestRule) validateConfig(sourceImage, targetImage *parser.Image)
 		return errors.New("marshal target image config")
 	}
 	if !reflect.DeepEqual(sourceConfig, targetConfig) {
-		return errors.New("source image config should be equal with target image config")
+		return errors.New("source image config should be equal to target image config")
 	}
 
 	return nil
