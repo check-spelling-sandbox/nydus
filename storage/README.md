@@ -13,7 +13,7 @@ The core storage subsystem for [Nydus Image Service](https://nydus.dev/) to:
 
 **Operating Systems**:
 - Linux
-- MacOS
+- macOS
 
 ## License
 

@@ -18,7 +18,7 @@ It provides:
 
 **Operating Systems**:
 - Linux
-- MacOS
+- macOS
 
 ## License
 
