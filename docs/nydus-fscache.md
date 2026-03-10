@@ -162,7 +162,7 @@ version = 2
    disable_snapshot_annotations = false
 ```
 
-For more information on how to configure containerd to use nydus snapshotter please refer to [here](./containerd-env-setup.md).
+See [more information on how to configure containerd to use nydus snapshotter](./containerd-env-setup.md).
 
 6. Restart containerd with
    `service containerd restart`
