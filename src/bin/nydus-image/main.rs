@@ -459,7 +459,7 @@ fn prepare_cmd_args(bti_string: &'static str) -> App {
 
     let app = app.subcommand(
         App::new("merge")
-            .about("Merge multiple bootstraps into a overlaid bootstrap")
+            .about("Merge multiple bootstraps into an overlaid bootstrap")
             .arg(
                 Arg::new("parent-bootstrap")
                     .long("parent-bootstrap")

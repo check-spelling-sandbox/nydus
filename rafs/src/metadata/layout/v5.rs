@@ -498,7 +498,7 @@ impl RafsV5PrefetchTable {
         Ok(data.len() + padding_bytes)
     }
 
-    /// Load a inode prefetch table from a reader.
+    /// Load an inode prefetch table from a reader.
     ///
     /// Note: Generally, prefetch happens after loading bootstrap, so with methods operating
     /// files with changing their offset won't bring errors. But we still use `pread` now so as
