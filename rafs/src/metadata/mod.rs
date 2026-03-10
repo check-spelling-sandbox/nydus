@@ -450,7 +450,7 @@ impl RafsSuperConfig {
         ensure!(
             self.version != RafsVersion::V5 || self.digester == meta.get_digester(),
             MergeError::InconsistentFilesystem(format!(
-                "RAFS v5 can not support different digest algorithm due to inode digest, {} vs {}",
+                "RAFS v5 cannot support different digest algorithm due to inode digest, {} vs {}",
                 self.digester,
                 meta.get_digester()
             ))

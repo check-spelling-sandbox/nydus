@@ -277,7 +277,7 @@ fn is_crashed(_sock: &impl AsRef<Path>) -> Result<bool> {
         .create(false)
         .open("/dev/cachefiles")
     {
-        warn!("cachefiles devfd can not open, the devfd may hold by supervisor or another daemon.");
+        warn!("cachefiles devfd cannot open, the devfd may hold by supervisor or another daemon.");
         if is_sock_residual(_sock) {
             warn!("A previous daemon crashed! Try to failover later.");
             return Ok(true);

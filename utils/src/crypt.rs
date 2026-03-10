@@ -463,7 +463,7 @@ pub fn encrypt_with_context<'a>(
             let (key, iv) = cipher_ctx.get_cipher_meta();
             Ok(cipher_obj.encrypt(key, Some(iv), data)?)
         } else {
-            Err(einval!("the encrypt context can not be none"))
+            Err(einval!("the encrypt context cannot be none"))
         }
     } else {
         Ok(Cow::Borrowed(data))
@@ -482,7 +482,7 @@ pub fn decrypt_with_context<'a>(
             let (key, iv) = cipher_ctx.get_cipher_meta();
             Ok(Cow::from(cipher_obj.decrypt(key, Some(iv), data)?))
         } else {
-            Err(einval!("the decrypt context can not be none"))
+            Err(einval!("the decrypt context cannot be none"))
         }
     } else {
         Ok(Cow::Borrowed(data))

@@ -163,13 +163,13 @@ impl LocalDisk {
         })?;
         let device_file = OpenOptions::new().read(true).open(path_buf).map_err(|e| {
             einval!(format!(
-                "localdisk: can not open disk device at {}, {}",
+                "localdisk: cannot open disk device at {}, {}",
                 path, e
             ))
         })?;
         let md = device_file.metadata().map_err(|e| {
             eio!(format!(
-                "localdisk: can not get file meta data about disk device {}, {}",
+                "localdisk: cannot get file meta data about disk device {}, {}",
                 path, e
             ))
         })?;
@@ -206,7 +206,7 @@ impl LocalDisk {
         };
 
         let device_file = self.device_file.try_clone().map_err(|e| {
-            LocalDiskError::BlobFile(format!("localdisk: can not duplicate file, {}", e))
+            LocalDiskError::BlobFile(format!("localdisk: cannot duplicate file, {}", e))
         })?;
         let blob = Arc::new(LocalDiskBlob {
             blob_id: blob_id.to_string(),
@@ -259,7 +259,7 @@ impl LocalDisk {
             }
         }
 
-        let msg = format!("localdisk: can not find such blob: {}", blob_id);
+        let msg = format!("localdisk: cannot find such blob: {}", blob_id);
         Err(LocalDiskError::ReadBlob(msg))
     }
 
