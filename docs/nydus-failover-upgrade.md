@@ -41,7 +41,7 @@ By now only the field `nydusd_path` is required in the request body. More fields
 
 ### State Machine of Nydusd
 
-![state machine of nydusd](images/nydusd-sate-machine.png)
+![state machine of nydusd](images/nydusd-state-machine.png)
 
 Under normal circumstances, executing the nydusd binary file will create a new nydusd process. At this time, the process is in the `Init` state. Then nydusd issues a `Mount` command to itself, entering the `Ready` state. Subsequently, an external controller (such as nydus-snapshotter) will call the control interface exposed by nydusd and issue a `Start` command, making nydusd enter the `Running` state.
 
