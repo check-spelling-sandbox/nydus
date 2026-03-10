@@ -28,7 +28,7 @@ sudo docker run -d --restart=always -p 5000:5000 registry
 
 Nydus image can be created by converting from an existing OCI or docker v2 image stored in container registry or directly built from Dockerfile(with [BuildKit](https://github.com/nydusaccelerator/buildkit/blob/master/docs/nydus.md))
 
-Note: For private registry repo, please make sure you are authorized to pull and push the target registry. The basic method is to use `docker pull` and `docker push` to verify your access to the source or target registry.
+Note: For private registry repo, please make sure you are authorized to push and pull the target registry. The basic method is to use `docker pull` and `docker push` to verify your access to the source or target registry.
 
 ```bash
 sudo nydusify convert --source ubuntu --target localhost:5000/ubuntu-nydus
