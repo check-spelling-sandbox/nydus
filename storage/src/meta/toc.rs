@@ -372,7 +372,7 @@ impl TocEntryList {
         Self::parse_toc_header(&buf, location)
     }
 
-    /// Read a [TocEntryList] from cache file, and fallback to storage backend.
+    /// Read a [TocEntryList] from cache file, and fall back to storage backend.
     pub fn read_from_cache_file<P: AsRef<Path>>(
         path: P,
         reader: &dyn BlobReader,

@@ -253,7 +253,7 @@ impl RegistryState {
                         || msg.contains("connection refused")
                         || msg.to_lowercase().contains("ssl");
                     if fallback {
-                        warn!("fallback to http due to tls connection error: {}", err);
+                        warn!("fall back to http due to tls connection error: {}", err);
                     }
                     fallback
                 }
