@@ -420,15 +420,15 @@ impl Connection {
                     }
                 }
                 // If proxy server responds invalid status code or http connection failed, we need to
-                // fallback to origin server, the policy only applicable to non-upload operation
-                warn!("Request proxy server failed, fallback to original server");
+                // fall back to origin server, the policy only applicable to non-upload operation
+                warn!("Request proxy server failed, fall back to original server");
             } else {
                 LAST_FALLBACK_AT.with(|f| {
                     let current = SystemTime::now();
                     if current.duration_since(*f.borrow()).unwrap().as_secs()
                         >= RATE_LIMITED_LOG_TIME as u64
                     {
-                        warn!("Proxy server is not healthy, fallback to original server");
+                        warn!("Proxy server is not healthy, fall back to original server");
                         f.replace(current);
                     }
                 })

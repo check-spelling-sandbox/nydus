@@ -1181,7 +1181,7 @@ impl FileCacheEntry {
         readv(self.file.as_raw_fd(), &mut iovec, offset)
     }
 
-    // Try to read data from blob cache and validate it, fallback to storage backend.
+    // Try to read data from blob cache and validate it, fall back to storage backend.
     fn dispatch_cache_slow(&self, cursor: &mut MemSliceCursor, region: &Region) -> Result<usize> {
         let mut total_read = 0;
 

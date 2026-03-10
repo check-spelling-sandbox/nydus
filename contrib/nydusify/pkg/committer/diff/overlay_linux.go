@@ -98,7 +98,7 @@ func GetOverlayLayers(m mount.Mount) ([]string, error) {
 			// these options are possible to specfied by the snapshotter but not indicate dir locations.
 			continue
 		} else {
-			// encountering an unknown option. return error and fallback to walking differ
+			// encountering an unknown option. return error and fall back to walking differ
 			// to avoid unexpected diff.
 			return nil, errors.Errorf("unknown option %q specified by snapshotter", o)
 		}
