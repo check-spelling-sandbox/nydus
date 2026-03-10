@@ -660,7 +660,7 @@ Blocks:             {blocks}"#,
                 return Ok(b.blob_id());
             }
         }
-        Err(anyhow!("can not find blob by index: {}", blob_index))
+        Err(anyhow!("cannot find blob by index: {}", blob_index))
     }
 }
 

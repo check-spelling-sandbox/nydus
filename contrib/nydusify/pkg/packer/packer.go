@@ -282,7 +282,7 @@ func (p *Packer) Pack(_ context.Context, req PackRequest) (PackResult, error) {
 
 	// if pusher is empty, that means backend config is not provided
 	if p.pusher == nil {
-		return PackResult{}, errors.New("can not push image to remote due to lack of backend configuration")
+		return PackResult{}, errors.New("cannot push image to remote due to lack of backend configuration")
 	}
 	pushResult, err := p.pusher.Push(PushRequest{
 		Meta:        req.ImageName,

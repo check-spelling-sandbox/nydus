@@ -45,7 +45,7 @@ func parseArgs(args []string) (*mountArgs, error) {
 		return nil, errors.New("fsType only support overlay")
 	}
 	if len(margs.target) == 0 {
-		return nil, errors.New("target can not be empty")
+		return nil, errors.New("target cannot be empty")
 	}
 	if args[2] == "-o" && len(args[3]) != 0 {
 		for _, opt := range strings.Split(args[3], ",") {
@@ -57,7 +57,7 @@ func parseArgs(args []string) (*mountArgs, error) {
 		}
 	}
 	if len(margs.options) == 0 {
-		return nil, errors.New("options can not be empty")
+		return nil, errors.New("options cannot be empty")
 	}
 	return margs, nil
 }

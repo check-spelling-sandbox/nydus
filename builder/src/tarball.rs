@@ -130,7 +130,7 @@ impl<'a> TarballTreeBuilder<'a> {
         let file = OpenOptions::new()
             .read(true)
             .open(self.ctx.source_path.clone())
-            .context("tarball: can not open source file for conversion")?;
+            .context("tarball: cannot open source file for conversion")?;
         let mut is_file = match file.metadata() {
             Ok(md) => md.file_type().is_file(),
             Err(_) => false,

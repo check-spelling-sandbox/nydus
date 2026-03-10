@@ -71,17 +71,17 @@ func TestParseArgs(t *testing.T) {
 		{
 			name:    "rejects empty target",
 			args:    []string{"overlay", "", "-o", "lowerdir=/lower"},
-			wantErr: "target can not be empty",
+			wantErr: "target cannot be empty",
 		},
 		{
 			name:    "rejects missing usable options",
 			args:    []string{"overlay", "/merged", "-o", "extraoption={\"trace\":true}"},
-			wantErr: "options can not be empty",
+			wantErr: "options cannot be empty",
 		},
 		{
 			name:    "rejects missing option flag",
 			args:    []string{"overlay", "/merged", "--", "lowerdir=/lower"},
-			wantErr: "options can not be empty",
+			wantErr: "options cannot be empty",
 		},
 	}
 

@@ -111,7 +111,7 @@ impl OutputSerializer {
                 .create(true)
                 .write(true)
                 .open(f)
-                .with_context(|| format!("can not open output file {}", f.display()))?;
+                .with_context(|| format!("cannot open output file {}", f.display()))?;
             let trace = root_tracer!().dump_summary_map().unwrap_or_default();
             let version = format!("{}-{}", build_info.package_ver, build_info.git_commit);
             let output = Self {
@@ -150,7 +150,7 @@ impl OutputSerializer {
                 .create(true)
                 .write(true)
                 .open(f)
-                .with_context(|| format!("can not open output file {}", f.display()))?;
+                .with_context(|| format!("cannot open output file {}", f.display()))?;
             let trace = root_tracer!().dump_summary_map().unwrap_or_default();
             let version = format!("{}-{}", build_info.package_ver, build_info.git_commit);
             let output = Self {

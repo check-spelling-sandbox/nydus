@@ -47,8 +47,8 @@ func (i *ImageTestSuite) TestConvertImages() test.Generator {
 					return true
 				}
 
-				// Zran and Batch can not work together.
-				// Zran and Encrypt can not work together.
+				// Zran and Batch cannot work together.
+				// Zran and Encrypt cannot work together.
 				return (param.GetBool(paramZran) && param.GetString(paramBatch) != "0") ||
 					(param.GetBool(paramZran) && param.GetBool(paramEncrypt))
 			})

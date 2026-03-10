@@ -269,7 +269,7 @@ impl Tree {
             if let Some(idx) = self.get_child_idx(&dir.name) {
                 self.children[idx].merge_children(ctx, dir)?;
             } else {
-                bail!("builder: can not find directory in merged tree");
+                bail!("builder: cannot find directory in merged tree");
             }
         }
 

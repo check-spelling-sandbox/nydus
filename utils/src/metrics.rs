@@ -155,7 +155,7 @@ impl InodeStatsCounter for InodeIoStats {
 /// is globally configured through nydusd configuration file.
 /// For now, the pattern is composed of:
 ///     1. How many times a file is read regardless of io block size and request offset.
-///        And this counter can not be cleared.
+///        And this counter cannot be cleared.
 ///     2. First time point at which this file is read. It's wall-time in unit of seconds.
 ///     3. File path relative to current rafs root.
 ///

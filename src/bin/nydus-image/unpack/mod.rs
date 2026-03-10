@@ -227,6 +227,6 @@ impl TarBuilder for OCITarBuilder {
             return Ok(());
         }
 
-        bail!("node {:?} can not be unpacked", path)
+        bail!("node {:?} cannot be unpacked", path)
     }
 }

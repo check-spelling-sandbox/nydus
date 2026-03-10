@@ -192,7 +192,7 @@ impl Merger {
                 if let Some(chunk_size) = chunk_size {
                     ensure!(
                         chunk_size == blob_ctx.chunk_size,
-                        "can not merge bootstraps with inconsistent chunk size, current bootstrap {:?} with chunk size {:x}, expected {:x}",
+                        "cannot merge bootstraps with inconsistent chunk size, current bootstrap {:?} with chunk size {:x}, expected {:x}",
                         bootstrap_path,
                         blob_ctx.chunk_size,
                         chunk_size,
