@@ -189,7 +189,7 @@ impl ConfigV2 {
         cfg
     }
 
-    /// Check whether chunk digest validation is enabled or not.
+    /// Check if chunk digest validation is enabled.
     pub fn is_chunk_validation_enabled(&self) -> bool {
         let mut validation = if let Some(cache) = &self.cache {
             cache.cache_validate
@@ -205,7 +205,7 @@ impl ConfigV2 {
         validation
     }
 
-    /// Check whether fscache is enabled or not.
+    /// Check if fscache is enabled.
     pub fn is_fs_cache(&self) -> bool {
         if let Some(cache) = self.cache.as_ref() {
             cache.fs_cache.is_some()
