@@ -60,7 +60,7 @@ func blobDesc(size int64, blobID string) ocispec.Descriptor {
 	return desc
 }
 
-// Nydusify majorly works for registry backend, which means blob is stored in
+// Nydusify primarily works for registry backend, which means blob is stored in
 // registry as per OCI distribution specification. But nydus can also make OSS
 // as rafs backend storage. Therefore, nydusify better have the ability to upload
 // blob into OSS. OSS is configured via a json string input. Currently, it has

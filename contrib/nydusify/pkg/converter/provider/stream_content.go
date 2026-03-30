@@ -86,7 +86,7 @@ func (s *StreamContent) Info(_ context.Context, dgst digest.Digest) (ctrcontent.
 	if lbs, ok := s.labels[dgst]; ok {
 		return ctrcontent.Info{Digest: dgst, Labels: copyMap(lbs)}, nil
 	}
-	// Emulate empty info for non-existent content to allow label handlers to proceed.
+	// Emulate empty info for nonexistent content to allow label handlers to proceed.
 	return ctrcontent.Info{Digest: dgst, Labels: nil}, nil
 }
 

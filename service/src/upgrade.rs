@@ -98,8 +98,8 @@ struct FusedevState {
 
 /// Online upgrade manager.
 pub struct UpgradeManager {
-    fscache_deamon_stat: FscacheState,
-    fuse_deamon_stat: FusedevState,
+    fscache_daemon_stat: FscacheState,
+    fuse_daemon_stat: FusedevState,
     file: Option<File>,
     backend: Box<dyn StorageBackend>,
 }
@@ -108,12 +108,12 @@ impl UpgradeManager {
     /// Create a new instance of [UpgradeManager].
     pub fn new(socket_path: PathBuf) -> Self {
         UpgradeManager {
-            fscache_deamon_stat: FscacheState {
+            fscache_daemon_stat: FscacheState {
                 blob_entry_map: HashMap::new(),
                 threads: 1,
                 path: "".to_string(),
             },
-            fuse_deamon_stat: FusedevState {
+            fuse_daemon_stat: FusedevState {
                 fs_mount_cmd_map: HashMap::new(),
                 vfs_state_data: vec![],
                 fuse_conn_id: 0,
@@ -127,7 +127,7 @@ impl UpgradeManager {
         blob_state_id.push('/');
         blob_state_id.push_str(&entry.blob_id);
 
-        self.fscache_deamon_stat
+        self.fscache_daemon_stat
             .blob_entry_map
             .insert(blob_state_id, entry);
     }
@@ -143,7 +143,7 @@ impl UpgradeManager {
         }
 
         if self
-            .fscache_deamon_stat
+            .fscache_daemon_stat
             .blob_entry_map
             .remove(&blob_state_id)
             .is_none()
@@ -153,12 +153,12 @@ impl UpgradeManager {
     }
 
     pub fn save_fscache_states(&mut self, threads: usize, path: String) {
-        self.fscache_deamon_stat.path = path;
-        self.fscache_deamon_stat.threads = threads;
+        self.fscache_daemon_stat.path = path;
+        self.fscache_daemon_stat.threads = threads;
     }
 
     pub fn save_fuse_cid(&mut self, fuse_conn_id: u64) {
-        self.fuse_deamon_stat.fuse_conn_id = fuse_conn_id;
+        self.fuse_daemon_stat.fuse_conn_id = fuse_conn_id;
     }
 
     pub fn save_vfs_stat(&mut self, vfs: &Vfs) -> Result<()> {
@@ -166,7 +166,7 @@ impl UpgradeManager {
             let io_err = io::Error::other(format!("Failed to save vfs state: {:?}", e));
             UpgradeMgrError::Serialize(io_err)
         })?;
-        self.fuse_deamon_stat.vfs_state_data = vfs_state_data;
+        self.fuse_daemon_stat.vfs_state_data = vfs_state_data;
         Ok(())
     }
 
@@ -176,7 +176,7 @@ impl UpgradeManager {
             cmd: cmd.clone(),
             vfs_index,
         };
-        self.fuse_deamon_stat
+        self.fuse_daemon_stat
             .fs_mount_cmd_map
             .insert(cmd.mountpoint, cmd_wrapper);
     }
@@ -184,7 +184,7 @@ impl UpgradeManager {
     /// Update a filesystem instance in the upgrade manager.
     pub fn update_mounts_state(&mut self, cmd: FsBackendMountCmd) -> Result<()> {
         match self
-            .fuse_deamon_stat
+            .fuse_daemon_stat
             .fs_mount_cmd_map
             .get_mut(&cmd.mountpoint)
         {
@@ -199,7 +199,7 @@ impl UpgradeManager {
     /// Remove a filesystem instance from the upgrade manager.
     pub fn remove_mounts_state(&mut self, cmd: FsBackendUmountCmd) {
         if self
-            .fuse_deamon_stat
+            .fuse_daemon_stat
             .fs_mount_cmd_map
             .remove(&cmd.mountpoint)
             .is_none()
@@ -333,7 +333,7 @@ pub mod fscache_upgrade {
 
     pub fn save(daemon: &ServiceController) -> Result<()> {
         if let Some(mut mgr) = daemon.upgrade_mgr() {
-            let backend_stat = FscacheBackendState::try_from(&mgr.fscache_deamon_stat)
+            let backend_stat = FscacheBackendState::try_from(&mgr.fscache_daemon_stat)
                 .map_err(UpgradeMgrError::Serialize)?;
             let stat = backend_stat.save().map_err(UpgradeMgrError::Serialize)?;
             mgr.save(&stat)?;
@@ -370,7 +370,7 @@ pub mod fscache_upgrade {
                 }
 
                 //restore upgrade manager fscache stat
-                mgr.fscache_deamon_stat = stat;
+                mgr.fscache_daemon_stat = stat;
                 return Ok(());
             }
         }
@@ -445,7 +445,7 @@ pub mod fusedev_upgrade {
         let mut mgr = svc.upgrade_mgr().unwrap();
         mgr.save_vfs_stat(vfs)?;
 
-        let backend_stat = FusedevBackendState::from(&mgr.fuse_deamon_stat);
+        let backend_stat = FusedevBackendState::from(&mgr.fuse_daemon_stat);
 
         let state = backend_stat.save().map_err(UpgradeMgrError::Serialize)?;
         mgr.save(&state)?;
@@ -503,7 +503,7 @@ pub mod fusedev_upgrade {
             })?;
 
         //restore upgrade manager fuse stat
-        mgr.fuse_deamon_stat = state;
+        mgr.fuse_daemon_stat = state;
 
         Ok(())
     }
@@ -582,28 +582,28 @@ mod tests {
         }"#;
         let entry: BlobCacheEntry = serde_json::from_str(content).unwrap();
         upgrade_mgr.save_fscache_states(4, "/tmp/fscache_dir".to_string());
-        assert_eq!(upgrade_mgr.fscache_deamon_stat.threads, 4);
-        assert_eq!(upgrade_mgr.fscache_deamon_stat.path, "/tmp/fscache_dir");
+        assert_eq!(upgrade_mgr.fscache_daemon_stat.threads, 4);
+        assert_eq!(upgrade_mgr.fscache_daemon_stat.path, "/tmp/fscache_dir");
 
         upgrade_mgr.add_blob_entry_state(entry);
         assert!(upgrade_mgr
-            .fscache_deamon_stat
+            .fscache_daemon_stat
             .blob_entry_map
             .contains_key("domain1/blob1"));
 
-        assert!(FscacheBackendState::try_from(&upgrade_mgr.fscache_deamon_stat).is_ok());
+        assert!(FscacheBackendState::try_from(&upgrade_mgr.fscache_daemon_stat).is_ok());
 
-        let backend_stat = FscacheBackendState::try_from(&upgrade_mgr.fscache_deamon_stat).unwrap();
+        let backend_stat = FscacheBackendState::try_from(&upgrade_mgr.fscache_daemon_stat).unwrap();
         assert!(backend_stat.save().is_ok());
         assert!(FscacheState::try_from(&backend_stat).is_ok());
         let stat = FscacheState::try_from(&backend_stat).unwrap();
-        assert_eq!(stat.path, upgrade_mgr.fscache_deamon_stat.path);
-        assert_eq!(stat.threads, upgrade_mgr.fscache_deamon_stat.threads);
+        assert_eq!(stat.path, upgrade_mgr.fscache_daemon_stat.path);
+        assert_eq!(stat.threads, upgrade_mgr.fscache_daemon_stat.threads);
         assert!(stat.blob_entry_map.contains_key("domain1/blob1"));
 
         upgrade_mgr.remove_blob_entry_state("domain1", "blob1");
         assert!(!upgrade_mgr
-            .fscache_deamon_stat
+            .fscache_daemon_stat
             .blob_entry_map
             .contains_key("domain1/blob1"));
     }
@@ -632,35 +632,35 @@ mod tests {
         let cmd = FsBackendMountCmd {
             fs_type: FsBackendType::Rafs,
             config: config.to_string(),
-            mountpoint: "testmonutount".to_string(),
+            mountpoint: "testmount".to_string(),
             source: "testsource".to_string(),
             prefetch_files: Some(vec!["testfile".to_string()]),
         };
 
         upgrade_mgr.save_fuse_cid(10);
-        assert_eq!(upgrade_mgr.fuse_deamon_stat.fuse_conn_id, 10);
+        assert_eq!(upgrade_mgr.fuse_daemon_stat.fuse_conn_id, 10);
         upgrade_mgr.add_mounts_state(cmd.clone(), 5);
         assert!(upgrade_mgr
-            .fuse_deamon_stat
+            .fuse_daemon_stat
             .fs_mount_cmd_map
-            .contains_key("testmonutount"));
+            .contains_key("testmount"));
         assert!(upgrade_mgr.update_mounts_state(cmd).is_ok());
 
-        let backend_stat = FusedevBackendState::from(&upgrade_mgr.fuse_deamon_stat);
+        let backend_stat = FusedevBackendState::from(&upgrade_mgr.fuse_daemon_stat);
         assert!(backend_stat.save().is_ok());
 
         let stat = FusedevState::from(&backend_stat);
-        assert_eq!(stat.fuse_conn_id, upgrade_mgr.fuse_deamon_stat.fuse_conn_id);
-        assert!(stat.fs_mount_cmd_map.contains_key("testmonutount"));
+        assert_eq!(stat.fuse_conn_id, upgrade_mgr.fuse_daemon_stat.fuse_conn_id);
+        assert!(stat.fs_mount_cmd_map.contains_key("testmount"));
 
         let umount_cmd: FsBackendUmountCmd = FsBackendUmountCmd {
-            mountpoint: "testmonutount".to_string(),
+            mountpoint: "testmount".to_string(),
         };
         upgrade_mgr.remove_mounts_state(umount_cmd);
         assert!(!upgrade_mgr
-            .fuse_deamon_stat
+            .fuse_daemon_stat
             .fs_mount_cmd_map
-            .contains_key("testmonutount"));
+            .contains_key("testmount"));
     }
 
     #[test]

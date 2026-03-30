@@ -45,10 +45,10 @@ ping_url = "localhost:6789/ping"
 fallback = true
 # Interval for proxy health checking, in seconds.
 check_interval = 5
-# Replace URL to http to request source registry with proxy, and allow fallback to https if the proxy is unhealthy.
+# Replace URL to http to request source registry with proxy, and allow falling back to https if the proxy is unhealthy.
 use_http = false
 
-[backend.registy]
+[backend.registry]
 # Registry http scheme, either 'http' or 'https'
 scheme = "https"
 # Registry url host
@@ -82,7 +82,7 @@ ping_url = "localhost:6789/ping"
 fallback = true
 # Interval for proxy health checking, in seconds.
 check_interval = 5
-# Replace URL to http to request source registry with proxy, and allow fallback to https if the proxy is unhealthy.
+# Replace URL to http to request source registry with proxy, and allow falling back to https if the proxy is unhealthy.
 use_http = false
 
 
@@ -97,7 +97,7 @@ validate = true
 enable_encryption = true
 # Enable convergent encryption for chunk deduplication.
 enable_convergent_encryption = true
-# Key for data encryption, a heximal representation of [u8; 32].
+# Key for data encryption, a hexadecimal representation of [u8; 32].
 encryption_key = "fc4a7db5614afc2f400e9478bebed1aefdbc9d7cd03210b84f144683a7a6fd1a"
 
 [cache.filecache]

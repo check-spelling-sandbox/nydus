@@ -15,7 +15,7 @@ import (
 const (
 	// Extra mount option to pass Nydus specific information from snapshotter to runtime through containerd.
 	extraOptionKey = "extraoption="
-	// Kata virtual volume infmation passed from snapshotter to runtime through containerd, superset of `extraOptionKey`.
+	// Kata virtual volume information passed from snapshotter to runtime through containerd, superset of `extraOptionKey`.
 	// Please refer to `KataVirtualVolume` in https://github.com/kata-containers/kata-containers/blob/main/src/libs/kata-types/src/mount.rs
 	kataVolumeOptionKey = "io.katacontainers.volume="
 )
@@ -45,7 +45,7 @@ func parseArgs(args []string) (*mountArgs, error) {
 		return nil, errors.New("fsType only support overlay")
 	}
 	if len(margs.target) == 0 {
-		return nil, errors.New("target can not be empty")
+		return nil, errors.New("target cannot be empty")
 	}
 	if args[2] == "-o" && len(args[3]) != 0 {
 		for _, opt := range strings.Split(args[3], ",") {
@@ -57,7 +57,7 @@ func parseArgs(args []string) (*mountArgs, error) {
 		}
 	}
 	if len(margs.options) == 0 {
-		return nil, errors.New("options can not be empty")
+		return nil, errors.New("options cannot be empty")
 	}
 	return margs, nil
 }

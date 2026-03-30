@@ -40,7 +40,7 @@ pub(crate) struct FileState {
 /// The `NydusFileHandle` returned should be freed by calling `nydus_close()`.
 ///
 /// # Safety
-/// Caller needs to ensure `fs_handle` and `path` are valid, otherwise it may cause memory access
+/// Caller needs to ensure `fs_handle` and `path` are valid; otherwise, it may cause memory access
 /// violation.
 #[no_mangle]
 pub unsafe extern "C" fn nydus_fopen(
@@ -76,7 +76,7 @@ pub unsafe extern "C" fn nydus_fopen(
 /// Close the file handle returned by `nydus_fopen()`.
 ///
 /// # Safety
-/// Caller needs to ensure `fs_handle` is valid, otherwise it may cause memory access violation.
+/// Caller needs to ensure `fs_handle` is valid; otherwise, it may cause memory access violation.
 #[no_mangle]
 pub unsafe extern "C" fn nydus_fclose(handle: NydusFileHandle) {
     let mut file = Box::from_raw(handle as *mut FileState);

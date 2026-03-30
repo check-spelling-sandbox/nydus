@@ -119,7 +119,7 @@ impl LocalFs {
         })
     }
 
-    // Use the user specified blob file name if available, otherwise generate the file name by
+    // Use the user specified blob file name if available; otherwise, generate the file name by
     // concatenating `dir` and `blob_id`.
     fn get_blob_path(&self, blob_id: &str) -> LocalFsResult<PathBuf> {
         let path = if !self.blob_file.is_empty() {

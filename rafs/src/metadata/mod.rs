@@ -461,7 +461,7 @@ impl RafsSuperConfig {
         ensure!(
             self.version != RafsVersion::V5 || self.digester == meta.get_digester(),
             MergeError::InconsistentFilesystem(format!(
-                "RAFS v5 can not support different digest algorithm due to inode digest, {} vs {}",
+                "RAFS v5 cannot support different digest algorithm due to inode digest, {} vs {}",
                 self.digester,
                 meta.get_digester()
             ))
@@ -1247,7 +1247,7 @@ mod tests {
 
     fn get_meta(
         chunk_size: u32,
-        explice_uidgid: bool,
+        explicit_uidgid: bool,
         tartfs_mode: bool,
         hash: RafsSuperFlags,
         comp: RafsSuperFlags,
@@ -1258,7 +1258,7 @@ mod tests {
             chunk_size,
             ..Default::default()
         };
-        if explice_uidgid {
+        if explicit_uidgid {
             meta.flags |= RafsSuperFlags::EXPLICIT_UID_GID;
         }
         if tartfs_mode {

@@ -60,7 +60,7 @@ func TestReadImageRefBlob(t *testing.T) {
 		files, err := readTarBlob(rs)
 		require.Nil(t, err)
 		require.NotEqual(t, 0, len(files))
-		t.Logf("files: %v, elapesed: %v", files, time.Since(startTime))
+		t.Logf("files: %v, elapsed: %v", files, time.Since(startTime))
 	}
 
 }

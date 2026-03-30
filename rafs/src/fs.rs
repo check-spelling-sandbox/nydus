@@ -84,7 +84,7 @@ impl Rafs {
         mountpoint: &str,
         metadata_path: &Path,
     ) -> RafsResult<(Self, RafsIoReader)> {
-        // Assume all meta/data blobs are accessible, otherwise it will always cause IO errors.
+        // Assume all meta/data blobs are accessible; otherwise, it will always cause IO errors.
         cfg.internal.set_blob_accessible(true);
 
         let cache_cfg = cfg.get_cache_config().map_err(RafsError::LoadConfig)?;
@@ -176,7 +176,7 @@ impl Rafs {
         Ok(())
     }
 
-    /// Import an rafs bootstrap to initialize the filesystem instance.
+    /// Import a rafs bootstrap to initialize the filesystem instance.
     pub fn import(
         &mut self,
         r: RafsIoReader,

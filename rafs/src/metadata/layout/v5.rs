@@ -15,9 +15,9 @@
 //! RAFS meta data into process as runtime meta data, so we could parse RAFS on disk meta data on
 //! demand. The V5 meta data format has following changes:
 //! 1) file system version number been bumped to 0x500.
-//! 2) Directory inodes will sequentially assign globally unique `child index` to it's child inodes.
+//! 2) Directory inodes will sequentially assign globally unique `child index` to its child inodes.
 //!    Two fields, "child_index" and "child_count", have been added to the OndiskInode struct.
-//! 3) For inodes with hard link count as 1, the `child index` equals to its assigned inode number.
+//! 3) For inodes with hard link count as 1, the `child index` equals its assigned inode number.
 //! 4) For inodes with hard link count bigger than 1, the `child index` may be different from the
 //!    assigned inode number. Among those child entries linking to the same inode, there's will be
 //!    one and only one child entry having the inode number as its assigned `child index'.
@@ -498,7 +498,7 @@ impl RafsV5PrefetchTable {
         Ok(data.len() + padding_bytes)
     }
 
-    /// Load a inode prefetch table from a reader.
+    /// Load an inode prefetch table from a reader.
     ///
     /// Note: Generally, prefetch happens after loading bootstrap, so with methods operating
     /// files with changing their offset won't bring errors. But we still use `pread` now so as
@@ -729,7 +729,7 @@ impl RafsStore for RafsV5BlobTable {
 
 /// Rafs v5 extended blob information on disk metadata.
 ///
-/// RafsV5ExtDBlobEntry is appended to the tail of bootstrap,
+/// RafsV5ExtBlobEntry is appended to the tail of bootstrap,
 /// can be used as an extended table for the original blob table.
 // This disk structure is well defined and rafs aligned.
 #[repr(C)]
@@ -1133,7 +1133,7 @@ impl RafsV5ChunkInfo {
         RafsV5ChunkInfo::default()
     }
 
-    /// Load a Rafs v5 indoe from a reader.
+    /// Load a Rafs v5 info from a reader.
     pub fn load(&mut self, r: &mut RafsIoReader) -> Result<()> {
         r.read_exact(self.as_mut())
     }
@@ -1398,7 +1398,7 @@ pub(crate) fn rafsv5_align(size: usize) -> usize {
     }
 }
 
-/// Validate inode metadata, include children, chunks and symblink etc.
+/// Validate inode metadata, include children, chunks and symlink etc.
 ///
 /// The default implementation is for rafs v5. The chunk data is not validated here, which will
 /// be validate on fs read.

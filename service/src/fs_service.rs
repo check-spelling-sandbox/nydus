@@ -293,7 +293,7 @@ fn fs_backend_factory(cmd: &FsBackendMountCmd) -> Result<BackFileSystem> {
                     // Create an overlay upper layer with passthroughfs.
                     #[cfg(target_os = "macos")]
                     return Err(Error::InvalidArguments(String::from(
-                        "not support OverlayFs since passthroughfs isn't supported on MacOS",
+                        "not support OverlayFs since passthroughfs isn't supported on macOS",
                     )));
                     #[cfg(target_os = "linux")]
                     {
@@ -408,7 +408,7 @@ mod tests {
             &FsBackendMountCmd {
                 fs_type: FsBackendType::Rafs,
                 config: config.to_string(),
-                mountpoint: "testmonutount".to_string(),
+                mountpoint: "testmount".to_string(),
                 source: "testsource".to_string(),
                 prefetch_files: Some(vec!["testfile".to_string()]),
             },

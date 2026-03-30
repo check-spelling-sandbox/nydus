@@ -48,7 +48,7 @@ void nydus_fclose(NydusFileHandle handle);
 /**
  * Open a RAFS filesystem and return a handle to the filesystem object.
  *
- * The returned filesystem handle should be freed by calling `nydus_close_rafs()`, otherwise
+ * The returned filesystem handle should be freed by calling `nydus_close_rafs()`; otherwise,
  * it will cause memory leak.
  */
 NydusFsHandle nydus_open_rafs(const char *bootstrap, const char *config);
@@ -56,7 +56,7 @@ NydusFsHandle nydus_open_rafs(const char *bootstrap, const char *config);
 /**
  * Open a RAFS filesystem with default configuration and return a handle to the filesystem object.
  *
- * The returned filesystem handle should be freed by calling `nydus_close_rafs()`, otherwise
+ * The returned filesystem handle should be freed by calling `nydus_close_rafs()`; otherwise,
  * it will cause memory leak.
  */
 NydusFsHandle nydus_open_rafs_default(const char *bootstrap, const char *dir_path);
@@ -65,6 +65,6 @@ NydusFsHandle nydus_open_rafs_default(const char *bootstrap, const char *dir_pat
  * Close the RAFS filesystem returned by `nydus_open_rafs()` and friends.
  *
  * All `NydusFileHandle` objects created from the `NydusFsHandle` should be freed before calling
- * `nydus_close_rafs()`, otherwise it may cause panic.
+ * `nydus_close_rafs()`; otherwise, it may cause panic.
  */
 void nydus_close_rafs(NydusFsHandle handle);

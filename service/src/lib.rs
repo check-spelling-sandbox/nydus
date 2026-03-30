@@ -234,7 +234,7 @@ pub trait ServiceArgs {
     /// Get value of commandline option `key`.
     fn value_of(&self, key: &str) -> Option<&String>;
 
-    /// Check whether commandline optio `key` is present.
+    /// Check whether commandline option `key` is present.
     fn is_present(&self, key: &str) -> bool;
 }
 
@@ -291,7 +291,7 @@ mod tests {
             FsBackendType::from_str("passthrough_fs").unwrap(),
             FsBackendType::PassthroughFs
         );
-        assert!(FsBackendType::from_str("passthroug").is_err());
+        assert!(FsBackendType::from_str("pass_through").is_err());
 
         assert_eq!(format!("{}", FsBackendType::Rafs), "Rafs");
         assert_eq!(format!("{}", FsBackendType::PassthroughFs), "PassthroughFs");

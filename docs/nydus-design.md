@@ -96,7 +96,7 @@ Blob is the data part of a container image, it consists of files' data.  Nydus h
 Nydus can be configured to set up a cache for blob, called `blobcache`.  With `blobcache`, fetched blob data is saved to a `work dir` and won't be repeatedly fetched.  Given the assumption that only a small portion of image is fetched, there is no cache eviction for `blobcache`.
 
 ##    6. Compression
-Nydus can be configured to save either compressed chunk or noncompressed chunk, with compressed chunk is the default configuration.
+Nydus can be configured to save either compressed chunk or uncompressed chunk, with compressed chunk is the default configuration.
 
 The compression algorithm is lz4, gzip and zstd, `None` stands for noncompression.
 

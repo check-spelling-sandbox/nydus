@@ -1,6 +1,6 @@
 # Nydus Setup for Containerd Environment
 
-This document will walk through how to setup a nydus image service to work with containerd. It assumes that you already have `containerd` installed. If not, please refer to [containerd documents](https://github.com/containerd/containerd/blob/master/docs/ops.md) on how to install and set it up.
+This document will walk through how to set up a nydus image service to work with containerd. It assumes that you already have `containerd` installed. If not, please refer to [containerd documents](https://github.com/containerd/containerd/blob/master/docs/ops.md) on how to install and set it up.
 
 ## Install All Nydus Binaries
 
@@ -26,9 +26,9 @@ sudo docker run -d --restart=always -p 5000:5000 registry
 
 ## Convert/Build an Image to Nydus Format
 
-Nydus image can be created by converting from an existing OCI or docker v2 image stored in container registry or directly built from Dockerfile(with [Buildkit](https://github.com/nydusaccelerator/buildkit/blob/master/docs/nydus.md))
+Nydus image can be created by converting from an existing OCI or docker v2 image stored in container registry or directly built from Dockerfile(with [BuildKit](https://github.com/nydusaccelerator/buildkit/blob/master/docs/nydus.md))
 
-Note: For private registry repo, please make sure you are authorized to pull and push the target registry. The basic method is to use `docker pull` and `docker push` to verify your access to the source or target registry.
+Note: For private registry repo, please make sure you are authorized to push and pull the target registry. The basic method is to use `docker pull` and `docker push` to verify your access to the source or target registry.
 
 ```bash
 sudo nydusify convert --source ubuntu --target localhost:5000/ubuntu-nydus
@@ -94,7 +94,7 @@ sudo rm -rf /var/lib/containerd/io.containerd.snapshotter.v1.nydus
 ```
 
 3. Start `containerd-nydus-grpc` (nydus snapshotter):
-Optionally, a TOML based nydus-snapshotter configuration file can be provided by appending `--config <CONFIG>` when starting nydus-snapshotter if you want fine-grained control items. An example configuration file can be found [here](https://github.com/containerd/nydus-snapshotter/blob/main/misc/snapshotter/config.toml)
+Optionally, a TOML based nydus-snapshotter configuration file can be provided by appending `--config <CONFIG>` when starting nydus-snapshotter if you want fine-grained control items. See an [example configuration file](https://github.com/containerd/nydus-snapshotter/blob/main/misc/snapshotter/config.toml)
 
 ```bash
 sudo /usr/bin/containerd-nydus-grpc \

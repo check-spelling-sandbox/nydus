@@ -155,7 +155,7 @@ impl InodeStatsCounter for InodeIoStats {
 /// is globally configured through nydusd configuration file.
 /// For now, the pattern is composed of:
 ///     1. How many times a file is read regardless of io block size and request offset.
-///        And this counter can not be cleared.
+///        And this counter cannot be cleared.
 ///     2. First time point at which this file is read. It's wall-time in unit of seconds.
 ///     3. File path relative to current rafs root.
 ///
@@ -539,7 +539,7 @@ pub fn export_backend_metrics(name: &Option<String>) -> IoStatsResult<String> {
     }
 }
 
-/// Export blob cache metircs.
+/// Export blob cache metrics.
 pub fn export_blobcache_metrics(id: &Option<String>) -> IoStatsResult<String> {
     let metrics = BLOBCACHE_METRICS.read().unwrap();
 
@@ -961,13 +961,13 @@ mod tests {
     }
 
     #[test]
-    fn test_latecny() {
+    fn test_latency() {
         let f = FsIoStats::default();
         assert_eq!(f.latency_start(), None);
         f.measure_latency.store(true, Ordering::Relaxed);
         let s = f.latency_start().unwrap();
         let d = Duration::new(1, 500_000_000);
-        /* because of the timer resolution, the elapsed maybe greater than 1.5s gentlely*/
+        /* because of the timer resolution, the elapsed maybe greater than 1.5s gently*/
         f.latency_end(&s.checked_sub(d), StatsFop::Read);
         assert_eq!(
             f.read_latency_dist[latency_micros_range_index(1_500_000)].count(),

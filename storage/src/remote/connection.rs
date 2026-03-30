@@ -56,7 +56,7 @@ pub(crate) enum Error {
     /// memfd file creation error
     MemFdCreateError,
     /// File truncate error
-    FileTrucateError,
+    FileTruncateError,
     /// memfd file seal errors
     MemFdSealError,
 }
@@ -81,8 +81,8 @@ impl std::fmt::Display for Error {
             Error::MemFdCreateError => {
                 write!(f, "handler failed to allocate memfd during get_inflight_fd")
             }
-            Error::FileTrucateError => {
-                write!(f, "handler failed to trucate memfd during get_inflight_fd")
+            Error::FileTruncateError => {
+                write!(f, "handler failed to truncate memfd during get_inflight_fd")
             }
             Error::MemFdSealError => write!(
                 f,
@@ -113,13 +113,13 @@ impl Error {
             Error::SocketError(_) | Error::SocketConnect(_) => false,
             Error::FeatureMismatch => false,
             Error::ReqHandlerError(_) => false,
-            Error::MemFdCreateError | Error::FileTrucateError | Error::MemFdSealError => false,
+            Error::MemFdCreateError | Error::FileTruncateError | Error::MemFdSealError => false,
         }
     }
 }
 
 impl std::convert::From<std::io::Error> for Error {
-    #[allow(unreachable_patterns)] // EWOULDBLOCK equals to EGAIN on linux
+    #[allow(unreachable_patterns)] // EWOULDBLOCK is equal to EAGAIN on linux
     fn from(err: std::io::Error) -> Self {
         Error::SocketError(err)
     }
@@ -136,7 +136,7 @@ impl std::convert::From<SysError> for Error {
     /// * - Error::SocketRetry: temporary error caused by signals or short of resources.
     /// * - Error::SocketBroken: the underline socket is broken.
     /// * - Error::SocketError: other socket related errors.
-    #[allow(unreachable_patterns)] // EWOULDBLOCK equals to EGAIN on linux
+    #[allow(unreachable_patterns)] // EWOULDBLOCK is equal to EAGAIN on linux
     fn from(err: SysError) -> Self {
         match err.errno() {
             // The socket is marked nonblocking and the requested operation would block.
@@ -156,7 +156,7 @@ impl std::convert::From<SysError> for Error {
             // process will also receive a SIGPIPE unless MSG_NOSIGNAL is set.
             libc::EPIPE => Error::SocketBroken(IOError::from_raw_os_error(libc::EPIPE)),
             // Write permission is denied on the destination socket file, or search permission is
-            // denied for one of the directories the path prefix.
+            // denied for one of the directories of the path prefix.
             libc::EACCES => Error::SocketConnect(IOError::from_raw_os_error(libc::EACCES)),
             // Catch all other errors
             e => Error::SocketError(IOError::from_raw_os_error(e)),
@@ -291,7 +291,7 @@ impl Endpoint {
     }
 
     /// Sends all bytes from scatter-gather vectors over the socket with optional attached file
-    /// descriptors. Will loop until all data has been transfered.
+    /// descriptors. Will loop until all data has been transferred.
     ///
     /// # Return:
     /// * - number of bytes sent on success
@@ -345,7 +345,7 @@ impl Endpoint {
     /// * - SocketError: other socket related errors.
     /// * - PartialMessage: received a partial message.
     pub fn send_header(&mut self, hdr: &MsgHeader, fds: Option<&[RawFd]>) -> Result<()> {
-        // Safe because there can't be other mutable referance to hdr.
+        // Safe because there can't be other mutable reference to hdr.
         let iovs = unsafe {
             [slice::from_raw_parts(
                 hdr as *const MsgHeader as *const u8,
@@ -377,7 +377,7 @@ impl Endpoint {
         if mem::size_of::<T>() > MAX_MSG_SIZE {
             return Err(Error::OversizedMsg);
         }
-        // Safe because there can't be other mutable referance to hdr and body.
+        // Safe because there can't be other mutable reference to hdr and body.
         let iovs = unsafe {
             [
                 slice::from_raw_parts(
@@ -471,7 +471,7 @@ impl Endpoint {
     /// attached file descriptors, the receiver must obey following rules:
     ///   1) file descriptors are attached to a message.
     ///   2) message(packet) boundaries must be respected on the receive side.
-    /// In other words, recvmsg() operations must not cross the packet boundary, otherwise the
+    /// In other words, recvmsg() operations must not cross the packet boundary; otherwise, the
     /// attached file descriptors will get lost.
     /// Note that this function wraps received file descriptors as `File`.
     ///
@@ -520,7 +520,7 @@ impl Endpoint {
     /// attached file descriptors, the receiver must obey following rules:
     ///   1) file descriptors are attached to a message.
     ///   2) message(packet) boundaries must be respected on the receive side.
-    /// In other words, recvmsg() operations must not cross the packet boundary, otherwise the
+    /// In other words, recvmsg() operations must not cross the packet boundary; otherwise, the
     /// attached file descriptors will get lost.
     /// Note that this function wraps received file descriptors as `File`.
     ///
@@ -610,7 +610,7 @@ impl Endpoint {
     /// * - SocketBroken: the underline socket is broken.
     /// * - SocketError: other socket related errors.
     /// * - PartialMessage: received a partial message.
-    /// * - InvalidMessage: received a invalid message.
+    /// * - InvalidMessage: received an invalid message.
     pub fn recv_header(&mut self) -> Result<(MsgHeader, Option<Vec<File>>)> {
         let mut hdr = MsgHeader::default();
         let mut iovs = [iovec {
@@ -639,7 +639,7 @@ impl Endpoint {
     /// * - SocketBroken: the underline socket is broken.
     /// * - SocketError: other socket related errors.
     /// * - PartialMessage: received a partial message.
-    /// * - InvalidMessage: received a invalid message.
+    /// * - InvalidMessage: received an invalid message.
     pub fn recv_body<T: ByteValued + Sized + MsgValidator>(
         &mut self,
     ) -> Result<(MsgHeader, T, Option<Vec<File>>)> {
@@ -681,7 +681,7 @@ impl Endpoint {
     /// * - SocketBroken: the underline socket is broken.
     /// * - SocketError: other socket related errors.
     /// * - PartialMessage: received a partial message.
-    /// * - InvalidMessage: received a invalid message.
+    /// * - InvalidMessage: received an invalid message.
     pub fn recv_body_into_buf(
         &mut self,
         buf: &mut [u8],
@@ -720,7 +720,7 @@ impl Endpoint {
     /// * - SocketBroken: the underline socket is broken.
     /// * - SocketError: other socket related errors.
     /// * - PartialMessage: received a partial message.
-    /// * - InvalidMessage: received a invalid message.
+    /// * - InvalidMessage: received an invalid message.
     #[cfg_attr(feature = "cargo-clippy", allow(clippy::type_complexity))]
     pub fn recv_payload_into_buf<T: ByteValued + Sized + MsgValidator>(
         &mut self,

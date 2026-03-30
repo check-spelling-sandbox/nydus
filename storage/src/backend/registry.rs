@@ -261,7 +261,7 @@ impl RegistryState {
                         || msg.contains("connection refused")
                         || msg.to_lowercase().contains("ssl");
                     if fallback {
-                        warn!("fallback to http due to tls connection error: {}", err);
+                        warn!("fall back to http due to tls connection error: {}", err);
                     }
                     fallback
                 }
@@ -1330,7 +1330,7 @@ mod tests {
             _ => panic!("failed to parse `Bearer` authentication header"),
         }
 
-        // No scope is accetpable
+        // No scope is acceptable
         let str = "Bearer realm=\"https://auth.my-registry.com/token\",service=\"my-registry.com\"";
         let header = HeaderValue::from_str(str).unwrap();
         let auth = RegistryState::parse_auth(&header).unwrap();

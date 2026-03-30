@@ -69,7 +69,7 @@ impl Merger {
     ///
     /// # Arguments
     /// - sources: contains one or more per layer bootstraps in order of lower to higher.
-    /// - chunk_dict: contain the chunk dictionary used to build per layer boostrap, or None.
+    /// - chunk_dict: contain the chunk dictionary used to build per layer bootstrap, or None.
     #[allow(clippy::too_many_arguments)]
     pub fn merge(
         ctx: &mut BuildContext,
@@ -173,7 +173,7 @@ impl Merger {
                 .context("failed to get RAFS version number")?;
             ctx.compressor = rs.meta.get_compressor();
             ctx.digester = rs.meta.get_digester();
-            // If any RAFS filesystems are encrypted, the merged boostrap will be marked as encrypted.
+            // If any RAFS filesystems are encrypted, the merged bootstrap will be marked as encrypted.
             match rs.meta.get_cipher() {
                 crypt::Algorithm::None => (),
                 crypt::Algorithm::Aes128Xts => ctx.cipher = crypt::Algorithm::Aes128Xts,
@@ -192,7 +192,7 @@ impl Merger {
                 if let Some(chunk_size) = chunk_size {
                     ensure!(
                         chunk_size == blob_ctx.chunk_size,
-                        "can not merge bootstraps with inconsistent chunk size, current bootstrap {:?} with chunk size {:x}, expected {:x}",
+                        "cannot merge bootstraps with inconsistent chunk size, current bootstrap {:?} with chunk size {:x}, expected {:x}",
                         bootstrap_path,
                         blob_ctx.chunk_size,
                         chunk_size,
@@ -282,7 +282,7 @@ impl Merger {
             })?;
 
             if let Some(tree) = &mut tree {
-                tree.merge_overaly(ctx, upper)?;
+                tree.merge_overlay(ctx, upper)?;
             } else {
                 tree = Some(upper);
             }

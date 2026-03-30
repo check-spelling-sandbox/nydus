@@ -15,7 +15,7 @@ address = "/run/containerd-nydus/system.sock"
 
 [system.debug]
 # Snapshotter can profile the CPU utilization of each nydusd daemon when it is being started.
-# This option specifies the profile duration when nydusd is downloading and uncomproessing data.
+# This option specifies the profile duration when nydusd is downloading and decompressing data.
 daemon_cpu_profile_duration_secs = 5
 # Enable by assigning an address, empty indicates pprof server is disabled
 pprof_address = ""
@@ -93,7 +93,7 @@ cache_dir = ""
 public_key_file = ""
 validate_signature = false
 
-# The configuraions for features that are not production ready
+# The configurations for features that are not production ready
 [experimental]
 # Whether to enable stargz support
 enable_stargz = false

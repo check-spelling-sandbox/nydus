@@ -282,7 +282,7 @@ func (p *Packer) Pack(_ context.Context, req PackRequest) (PackResult, error) {
 
 	// if pusher is empty, that means backend config is not provided
 	if p.pusher == nil {
-		return PackResult{}, errors.New("can not push image to remote due to lack of backend configuration")
+		return PackResult{}, errors.New("cannot push image to remote due to lack of backend configuration")
 	}
 	pushResult, err := p.pusher.Push(PushRequest{
 		Meta:        req.ImageName,
@@ -300,7 +300,7 @@ func (p *Packer) Pack(_ context.Context, req PackRequest) (PackResult, error) {
 
 // ensureNydusImagePath ensure nydus-image binary exists, the Precedence for nydus-image is as follows
 // 1. if nydusImagePath is specified try nydusImagePath first
-// 2. if nydusImagePath not exists, try to find nydus-image from $PATH
+// 2. if nydusImagePath does not exist, try to find nydus-image from $PATH
 // 3. return ErrNydusImageBinaryNotFound
 func (p *Packer) ensureNydusImagePath() error {
 	// if NydusImagePath is not empty, check if binary exists
@@ -310,7 +310,7 @@ func (p *Packer) ensureNydusImagePath() error {
 			p.logger.Infof("found 'nydus-image' binary at %s", p.nydusImagePath)
 			return nil
 		}
-		// if NydusImagePath not exists, check if nydus-image can be found in PATH
+		// if NydusImagePath does not exist, check if nydus-image can be found in PATH
 		if nydusBinaryPath, err := exec.LookPath(nydusBinaryName); err == nil {
 			p.logger.Infof("found 'nydus-image' binary at %s", nydusBinaryPath)
 			p.nydusImagePath = nydusBinaryPath

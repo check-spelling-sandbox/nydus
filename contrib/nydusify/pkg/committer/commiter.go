@@ -69,7 +69,7 @@ func NewCommitter(opt Opt) (*Committer, error) {
 		return nil, errors.Wrap(err, "prepare work dir")
 	}
 
-	workDir, err := os.MkdirTemp(opt.WorkDir, "nydusify-commiter-")
+	workDir, err := os.MkdirTemp(opt.WorkDir, "nydusify-committer-")
 	if err != nil {
 		return nil, errors.Wrap(err, "create temp dir")
 	}

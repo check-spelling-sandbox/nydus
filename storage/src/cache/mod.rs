@@ -51,7 +51,7 @@ pub use filecache::FileCacheMgr;
 #[cfg(target_os = "linux")]
 pub use fscache::FsCacheMgr;
 
-/// Timeout in milli-seconds to retrieve blob data from backend storage.
+/// Timeout in milliseconds to retrieve blob data from backend storage.
 pub const SINGLE_INFLIGHT_WAIT_TIMEOUT: u64 = 2000;
 
 struct BlobIoMergeState<'a, F: FnMut(BlobIoRange)> {
@@ -164,7 +164,7 @@ pub trait BlobCache: Send + Sync {
     /// Get message digest algorithm to handle chunks in the blob.
     fn blob_digester(&self) -> digest::Algorithm;
 
-    /// Check whether the cache object is for an stargz image with legacy chunk format.
+    /// Check whether the cache object is for a stargz image with legacy chunk format.
     fn is_legacy_stargz(&self) -> bool;
 
     /// Get maximum size of gzip compressed data.

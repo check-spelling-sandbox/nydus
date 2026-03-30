@@ -48,7 +48,7 @@ pub const EROFS_EXT_SUPER_BLOCK_SIZE: u16 = 256;
 pub const EROFS_DEVTABLE_OFFSET: u16 =
     EROFS_SUPER_OFFSET + EROFS_SUPER_BLOCK_SIZE + EROFS_EXT_SUPER_BLOCK_SIZE;
 
-/// Offseet for inode format flags: compact or extended.
+/// Offset for inode format flags: compact or extended.
 pub const EROFS_I_VERSION_BIT: u16 = 0;
 /// Number of bits for inode format flags.
 pub const EROFS_I_VERSION_BITS: u16 = 1;
@@ -333,7 +333,7 @@ impl RafsV6SuperBlock {
 }
 
 impl RafsStore for RafsV6SuperBlock {
-    // This method must be called before RafsV6SuperBlockExt::store(), otherwise data written by
+    // This method must be called before RafsV6SuperBlockExt::store(); otherwise, data written by
     // RafsV6SuperBlockExt::store() will be overwritten.
     fn store(&self, w: &mut dyn RafsIoWrite) -> Result<usize> {
         debug_assert!(
@@ -1144,7 +1144,7 @@ pub struct RafsV6InodeChunkHeader {
 impl RafsV6InodeChunkHeader {
     /// Create a new instance of `RafsV6InodeChunkHeader`.
     ///
-    /// If all chunks are continous in uncompressed cache file, the `chunk_size` will set to
+    /// If all chunks are continuous in uncompressed cache file, the `chunk_size` will set to
     /// `inode.size().next_power_of_two()`, so EROFS can optimize page cache in this case.
     /// Otherwise `chunk_size` is set to RAFS filesystem's chunk size.
     pub fn new(chunk_size: u64, block_size: u64) -> Self {
@@ -2176,7 +2176,7 @@ impl RafsV6PrefetchTable {
         Ok(data.len())
     }
 
-    /// Load a inode prefetch table from a reader.
+    /// Load an inode prefetch table from a reader.
     ///
     /// Note: Generally, prefetch happens after loading bootstrap, so with methods operating
     /// files with changing their offset won't bring errors. But we still use `pread` now so as

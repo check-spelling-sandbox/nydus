@@ -292,21 +292,21 @@ impl<R: Read> ZranGenerator<R> {
         &self.ci_array
     }
 
-    /// Set minimal compressed size to emit an random access slice.
+    /// Set minimal compressed size to emit a random access slice.
     ///
     /// Please ensure "min_compressed_size * 2 <= max_compressed_size".
     pub fn set_min_compressed_size(&mut self, sz: u64) {
         self.min_comp_size = sz;
     }
 
-    /// Set maximum compressed size to emit an random access slice.
+    /// Set maximum compressed size to emit a random access slice.
     ///
     /// Please ensure "min_compressed_size * 2 <= max_compressed_size".
     pub fn set_max_compressed_size(&mut self, sz: u64) {
         self.max_comp_size = sz;
     }
 
-    /// Set maximum uncompressed size to emit an random access slice.
+    /// Set maximum uncompressed size to emit a random access slice.
     ///
     /// Please ensure "min_compressed_size * 2 < max_compressed_size".
     pub fn set_max_uncompressed_size(&mut self, sz: u64) {
@@ -596,8 +596,8 @@ impl ZranStream {
     }
 
     fn reset2(&mut self, is_gzip: bool) -> Result<()> {
-        let winodw_bits = if is_gzip { 31 } else { -15 };
-        let ret = unsafe { inflateReset2(self.stream.deref_mut() as *mut z_stream, winodw_bits) };
+        let window_bits = if is_gzip { 31 } else { -15 };
+        let ret = unsafe { inflateReset2(self.stream.deref_mut() as *mut z_stream, window_bits) };
         if ret != Z_OK {
             return Err(einval!("failed to reset zlib inflate context"));
         }

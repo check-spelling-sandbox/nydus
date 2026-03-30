@@ -111,7 +111,7 @@ impl OutputSerializer {
                 .create(true)
                 .write(true)
                 .open(f)
-                .with_context(|| format!("can not open output file {}", f.display()))?;
+                .with_context(|| format!("cannot open output file {}", f.display()))?;
             let trace = root_tracer!().dump_summary_map().unwrap_or_default();
             let version = format!("{}-{}", build_info.package_ver, build_info.git_commit);
             let output = Self {
@@ -150,7 +150,7 @@ impl OutputSerializer {
                 .create(true)
                 .write(true)
                 .open(f)
-                .with_context(|| format!("can not open output file {}", f.display()))?;
+                .with_context(|| format!("cannot open output file {}", f.display()))?;
             let trace = root_tracer!().dump_summary_map().unwrap_or_default();
             let version = format!("{}-{}", build_info.package_ver, build_info.git_commit);
             let output = Self {
@@ -459,7 +459,7 @@ fn prepare_cmd_args(bti_string: &'static str) -> App {
 
     let app = app.subcommand(
         App::new("merge")
-            .about("Merge multiple bootstraps into a overlaid bootstrap")
+            .about("Merge multiple bootstraps into an overlaid bootstrap")
             .arg(
                 Arg::new("parent-bootstrap")
                     .long("parent-bootstrap")
@@ -626,7 +626,7 @@ fn prepare_cmd_args(bti_string: &'static str) -> App {
             .arg(
                 Arg::new("output-blob-dir")
                     .long("output-blob-dir")
-                    .help("Directroy path for storing optimized blob"),
+                    .help("Directory path for storing optimized blob"),
             )
             .arg(
                 arg_output_json.clone(),

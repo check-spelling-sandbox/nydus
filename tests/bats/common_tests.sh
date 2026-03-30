@@ -12,7 +12,7 @@ parse_toml() {
     echo "$value"
 }
 
-get_rust_toolcahin() {
+get_rust_toolchain() {
     local base_dir=$1
     local toml_file="${base_dir}/rust-toolchain.toml"
     local legacy_toml_file="${base_dir}/rust-toolchain"
@@ -35,7 +35,7 @@ get_go_work_version() {
 }
 
 repo_base_dir="${BATS_TEST_DIRNAME}/../.."
-rust_toolchain=$(get_rust_toolcahin "$repo_base_dir")
+rust_toolchain=$(get_rust_toolchain "$repo_base_dir")
 go_work_version=$(get_go_work_version "$repo_base_dir")
 compile_image="localhost/compile-image:${rust_toolchain}"
 nydus_snapshotter_repo="https://github.com/containerd/nydus-snapshotter.git"

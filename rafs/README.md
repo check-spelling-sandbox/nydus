@@ -10,7 +10,7 @@ The RAFS Fuse filesystem for [Nydus Image Service](https://nydus.dev/).
 
 **Operating Systems**:
 - Linux
-- MacOS
+- macOS
 
 ## License
 

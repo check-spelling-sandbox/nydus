@@ -129,7 +129,7 @@ func TestLocalPullSuccess(t *testing.T) {
 	pvd, err := New(t.TempDir(), testHostFunc, 4, "v1", platforms.OnlyStrict(ocispec.Platform{OS: "linux", Architecture: "amd64"}), 0, nil)
 	require.NoError(t, err)
 
-	// Test localPull with missing file
+	// Test localPull with a missing file
 	_, err = pvd.localPull(context.Background(), "/nonexistent.tar")
 	require.Error(t, err)
 }

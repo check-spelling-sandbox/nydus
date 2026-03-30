@@ -95,10 +95,10 @@ func GetOverlayLayers(m mount.Mount) ([]string, error) {
 				l[i], l[j] = l[j], l[i] // make l[0] = bottommost
 			}
 		} else if strings.HasPrefix(o, "workdir=") || o == "index=off" || o == "userxattr" || strings.HasPrefix(o, "redirect_dir=") {
-			// these options are possible to specfied by the snapshotter but not indicate dir locations.
+			// these options are possible to specified by the snapshotter but not indicate dir locations.
 			continue
 		} else {
-			// encountering an unknown option. return error and fallback to walking differ
+			// encountering an unknown option. return error and fall back to walking differ
 			// to avoid unexpected diff.
 			return nil, errors.Errorf("unknown option %q specified by snapshotter", o)
 		}
@@ -121,7 +121,7 @@ func (w *cancellableWriter) Write(p []byte) (int, error) {
 	return w.w.Write(p)
 }
 
-// Changes is continuty's `fs.Change`-like method but leverages overlayfs's
+// Changes is continuity's `fs.Change`-like method but leverages overlayfs's
 // "upperdir" for computing the diff. "upperdirView" is overlayfs mounted view of
 // the upperdir that doesn't contain whiteouts. This is used for computing
 // changes under opaque directories.
@@ -186,7 +186,7 @@ func Changes(ctx context.Context, appendMount func(path string), withPaths []str
 			// File exists in the base layer. Thus this is modified.
 			kind = fs.ChangeKindModify
 			// Avoid including directory that hasn't been modified. If /foo/bar/baz is modified,
-			// then /foo will apper here even if it's not been modified because it's the parent of bar.
+			// then /foo will appear here even if it's not been modified because it's the parent of bar.
 			if same, err := sameDirent(baseF, f, filepath.Join(base, path), filepath.Join(upperdirView, path)); same {
 				skipRecord = true // Both are the same, don't record the change
 			} else if err != nil {
@@ -296,7 +296,7 @@ func checkRedirect(upperdir string, path string, f os.FileInfo) (bool, error) {
 	return false, nil
 }
 
-// sameDirent performs continity-compatible comparison of files and directories.
+// sameDirent performs continuity-compatible comparison of files and directories.
 // https://github.com/containerd/continuity/blob/v0.1.0/fs/path.go#L91-L133
 // This will only do a slow content comparison of two files if they have all the
 // same metadata and both have truncated nanosecond mtime timestamps. In practice,

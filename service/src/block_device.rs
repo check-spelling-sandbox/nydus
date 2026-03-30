@@ -80,7 +80,7 @@ impl BlockDevice {
         let meta_blob_config = match cache_mgr.get_config(&blob_id) {
             None => {
                 return Err(enoent!(format!(
-                    "block_device: can not find blob {} in blob cache manager",
+                    "block_device: cannot find blob {} in blob cache manager",
                     blob_id
                 )))
             }
@@ -118,7 +118,7 @@ impl BlockDevice {
                 .get_blob_extra_info(&blob_id)
                 .ok_or_else(|| {
                     let msg = format!(
-                        "block_device: can not get extra information for blob {}",
+                        "block_device: cannot get extra information for blob {}",
                         blob_id
                     );
                     enoent!(msg)
@@ -168,7 +168,7 @@ impl BlockDevice {
                 .max(extra_info.mapped_blkaddr + blocks as u32 - 1);
             let range = ranges.allocate(&constraint).ok_or_else(|| {
                 enoent!(format!(
-                    "block_device: can not allocate address range for blob {}",
+                    "block_device: cannot allocate address range for blob {}",
                     blob_info.blob_id()
                 ))
             })?;
@@ -250,7 +250,7 @@ impl BlockDevice {
                 None => {
                     return (
                         Err(eio!(format!(
-                            "block_device: can not locate block 0x{:x} for meta blob {}",
+                            "block_device: cannot locate block 0x{:x} for meta blob {}",
                             start, self.blob_id
                         ))),
                         buf,

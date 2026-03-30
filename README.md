@@ -32,7 +32,7 @@ The following Benchmarking results demonstrate that Nydus images significantly o
 ***Provide Fast, Secure And Easy Access to Data Distribution***
 
 - **Performance**: Second-level container startup speed, millisecond-level function computation code package loading speed.
-- **Low Cost**: Written in memory-safed language `Rust`, numerous optimizations help improve memory, CPU, and network consumption.
+- **Low Cost**: Written in memory-safe language `Rust`, numerous optimizations help improve memory, CPU, and network consumption.
 - **Flexible**: Supports container runtimes such as [runC](https://github.com/opencontainers/runc) and [Kata](https://github.com/kata-containers), and provides [Confidential Containers](https://github.com/confidential-containers) and vulnerability scanning capabilities
 - **Security**: End to end data integrity check, Supply Chain Attack can be detected and avoided at runtime.
 
@@ -62,10 +62,10 @@ The following Benchmarking results demonstrate that Nydus images significantly o
 
 | Type          | Platform                                                                                                        | Description                                                                                                                                                  | Status |
 | ------------- | --------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------ |
-| Storage       | Registry/OSS/S3/NAS                                                                                             | Support for OCI-compatible distribution implementations such as Docker Hub, Harbor, Github GHCR, Aliyun ACR, NAS, and Aliyun OSS-like object storage service | ✅      |
+| Storage       | Registry/OSS/S3/NAS                                                                                             | Support for OCI-compatible distribution implementations such as Docker Hub, Harbor, GitHub GHCR, Aliyun ACR, NAS, and Aliyun OSS-like object storage service | ✅      |
 | Storage/Build | [Harbor](https://github.com/goharbor/acceleration-service)                                                      | Provides a general service for Harbor to support acceleration image conversion based on kinds of accelerator like Nydus and eStargz etc                      | ✅      |
 | Distribution  | [Dragonfly](https://github.com/dragonflyoss/dragonfly)                                                          | Improve the runtime performance of Nydus image even further with the Dragonfly P2P data distribution system                                                  | ✅      |
-| Build         | [Buildkit](https://github.com/nydusaccelerator/buildkit/blob/master/docs/nydus.md)                              | Provides the ability to build and export Nydus images directly from Dockerfile                                                                               | ✅      |
+| Build         | [BuildKit](https://github.com/nydusaccelerator/buildkit/blob/master/docs/nydus.md)                              | Provides the ability to build and export Nydus images directly from Dockerfile                                                                               | ✅      |
 | Build/Runtime | [Nerdctl](https://github.com/containerd/nerdctl/blob/master/docs/nydus.md)                                      | The containerd client to build or run (requires nydus snapshotter) Nydus image                                                                               | ✅      |
 | Runtime       | [Docker / Moby](https://github.com/dragonflyoss/nydus/blob/master/docs/docker-env-setup.md)                     | Run Nydus image in Docker container with containerd and nydus-snapshotter                                                                                    | ✅      |
 | Runtime       | [Kubernetes](https://github.com/containerd/nydus-snapshotter/blob/main/docs/run_nydus_in_kubernetes.md)         | Run Nydus image using CRI interface                                                                                                                          | ✅      |
@@ -90,7 +90,7 @@ make docker-static
 
 Convert OCIv1 image to Nydus image: [Nydusify](./docs/nydusify.md), [Acceld](https://github.com/goharbor/acceleration-service) or [Nerdctl](https://github.com/containerd/nerdctl/blob/master/docs/nydus.md#build-nydus-image-using-nerdctl-image-convert).
 
-Build Nydus image from Dockerfile directly: [Buildkit](https://github.com/nydusaccelerator/buildkit/blob/master/docs/nydus.md).
+Build Nydus image from Dockerfile directly: [BuildKit](https://github.com/nydusaccelerator/buildkit/blob/master/docs/nydus.md).
 
 Build Nydus layer from various sources: [Nydus Image Builder](./docs/nydus-image.md).
 
@@ -149,7 +149,7 @@ In the future, `zstd::chunked` can work in this way as well.
 
 ### Run Nydus Service
 
-Using the key features of nydus as native in your project without preparing and invoking `nydusd` deliberately, [nydus-service](./service/README.md) helps to reuse the core services of nyuds.
+Using the key features of nydus as native in your project without preparing and invoking `nydusd` deliberately, [nydus-service](./service/README.md) helps to reuse the core services of nydus.
 
 ## Documentation
 

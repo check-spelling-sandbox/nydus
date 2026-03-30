@@ -425,7 +425,7 @@ impl BlobInfo {
         self.prefetch_size = size as u32;
     }
 
-    /// Check whether this blob is for an stargz image.
+    /// Check whether this blob is for a stargz image.
     pub fn is_legacy_stargz(&self) -> bool {
         self.is_legacy_stargz
     }
@@ -803,7 +803,7 @@ pub struct BlobIoDesc {
     pub offset: u32,
     /// Size of the IO operation
     pub size: u32,
-    /// Whether it's a user initiated IO, otherwise is a storage system internal IO.
+    /// Whether it's a user initiated IO; otherwise, is a storage system internal IO.
     ///
     /// It might be initiated by user io amplification. With this flag, lower device
     /// layer may choose how to prioritize the IO operation.
@@ -952,7 +952,7 @@ impl Debug for BlobIoVec {
         f.debug_struct("BlobIoDesc")
             .field("blob_index", &self.bi_blob.blob_index)
             .field("size", &self.bi_size)
-            .field("decriptors", &self.bi_vec)
+            .field("descriptors", &self.bi_vec)
             .finish()
     }
 }

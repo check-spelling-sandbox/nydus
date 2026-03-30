@@ -153,7 +153,7 @@ func (fsViewer *FsViewer) MountImage() error {
 }
 
 // View provides the structure of the file system in target nydus image
-// It includes two steps, pull the boostrap of the image, and mount the
+// It includes two steps, pull the bootstrap of the image, and mount the
 // image under specified path.
 func (fsViewer *FsViewer) View(ctx context.Context) error {
 	if err := fsViewer.view(ctx); err != nil {

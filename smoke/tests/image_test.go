@@ -47,8 +47,8 @@ func (i *ImageTestSuite) TestConvertImages() test.Generator {
 					return true
 				}
 
-				// Zran and Batch can not work together.
-				// Zran and Encrypt can not work together.
+				// Zran and Batch cannot work together.
+				// Zran and Encrypt cannot work together.
 				return (param.GetBool(paramZran) && param.GetString(paramBatch) != "0") ||
 					(param.GetBool(paramZran) && param.GetBool(paramEncrypt))
 			})
@@ -193,12 +193,12 @@ func (i *ImageTestSuite) TestGenerateChunkdicts() test.Generator {
 		ctx := tool.DefaultContext(i.T)
 		ctx.Build.FSVersion = scenario.GetString(paramFSVersion)
 		return "chunkdict:" + scenario.Str(), func(t *testing.T) {
-			i.TestChundict(t, *ctx, sources)
+			i.TestChunkdict(t, *ctx, sources)
 		}
 	}
 }
 
-func (i *ImageTestSuite) TestChundict(t *testing.T, ctx tool.Context, images []string) {
+func (i *ImageTestSuite) TestChunkdict(t *testing.T, ctx tool.Context, images []string) {
 	trainImage := images[:len(images)-1]
 	testImage := images[len(images)-1]
 

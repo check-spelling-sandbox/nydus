@@ -257,8 +257,8 @@ func Optimize(ctx context.Context, opt Opt) error {
 			if err := os.MkdirAll(opt.WorkDir, 0755); err != nil {
 				return errors.Wrap(err, "prepare work directory")
 			}
-			// We should only clean up when the work directory not exists
-			// before, otherwise it may delete user data by mistake.
+			// We should only clean up when the work directory does not exist
+			// before; otherwise, it may delete user data by mistake.
 			defer os.RemoveAll(opt.WorkDir)
 		} else {
 			return errors.Wrap(err, "stat work directory")
@@ -435,11 +435,11 @@ func pushNewBootstrap(ctx context.Context, opt Opt, buildInfo BuildInfo) (*boots
 
 	oldBootstrapDesc := parser.FindNydusBootstrapDesc(&buildInfo.SourceImage.Manifest)
 	if oldBootstrapDesc == nil {
-		return nil, fmt.Errorf("not found originial Nydus bootstrap layer in manifest")
+		return nil, fmt.Errorf("not found original Nydus bootstrap layer in manifest")
 	}
 
 	annotations := oldBootstrapDesc.Annotations
-	annotations[utils.LayerAnnotationNyudsPrefetchBlob] = buildInfo.PrefetchBlobID
+	annotations[utils.LayerAnnotationNydusPrefetchBlob] = buildInfo.PrefetchBlobID
 
 	// push bootstrap
 	bootstrapDesc := ocispec.Descriptor{

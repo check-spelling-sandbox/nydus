@@ -118,7 +118,7 @@ impl DirectMappingState {
 impl Drop for DirectMappingState {
     fn drop(&mut self) {
         if !self.mmapped_inode_table {
-            // Safe because it's a allocated vector.
+            // Safe because it's an allocated vector.
             unsafe { ManuallyDrop::drop(&mut self.inode_table) };
         }
     }
@@ -357,7 +357,7 @@ impl OndiskInodeWrapper {
         state.file_map.get_ref::<RafsV5Inode>(self.offset).unwrap()
     }
 
-    /// Get an reference to the file name string.
+    /// Get a reference to the file name string.
     ///
     /// # Safety
     /// It depends on Self::validate() to ensure valid memory layout.

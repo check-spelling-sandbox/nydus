@@ -258,7 +258,7 @@ impl Node {
                 }
                 return Ok(0);
             } else {
-                return Err(Error::msg("inode's symblink is invalid."));
+                return Err(Error::msg("inode's symlink is invalid."));
             }
         } else if self.is_special() {
             if self.inode.is_v5() {
@@ -975,7 +975,7 @@ impl Node {
 
     /// Generate target path by stripping the `root` prefix.
     ///
-    /// Strip the `root` prefix if `path` starts with `root`, otherwise keep `path` as is.
+    /// Strip the `root` prefix if `path` starts with `root`; otherwise, keep `path` as is.
     /// For example:
     /// root: /absolute/path/to/rootfs
     /// path: /absolute/path/to/rootfs/file => /file

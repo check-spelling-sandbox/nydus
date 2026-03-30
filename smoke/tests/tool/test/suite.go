@@ -38,7 +38,7 @@ type Generator func() (name string, testCase Case)
 //
 // Compared with github.com/onsi/ginkgo, this framework provides simpler way to organize
 // cases into suite, which requires less learning of terms and less nested definitions.
-// Moreover, the asynchronous run is more golang-natived, which requires no other binary.
+// Moreover, the asynchronous run is more golang-native, which requires no other binary.
 //
 // Compared with github.com/stretchr/testify, this framework provides asynchronous mode
 // and dynamic way to generate cases.
@@ -110,7 +110,7 @@ type Generator func() (name string, testCase Case)
 //	    --- FAIL: Test1/TestFail (0.00s)
 //	    --- PASS: Test1/TestOk (0.00s)
 //
-// Example2: asynchronized way
+// Example2: asynchronous way
 //
 //	import (
 //	    "fmt"

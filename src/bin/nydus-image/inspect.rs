@@ -660,7 +660,7 @@ Blocks:             {blocks}"#,
                 return Ok(b.blob_id());
             }
         }
-        Err(anyhow!("can not find blob by index: {}", blob_index))
+        Err(anyhow!("cannot find blob by index: {}", blob_index))
     }
 }
 
@@ -709,7 +709,7 @@ impl Executor {
             }
             ("icheck", Some(argument)) => {
                 let ino: u64 = argument.parse().map_err(|_| {
-                    println!("Wrong INODE is specified. Is it a inode number?");
+                    println!("Wrong INODE is specified. Is it an inode number?");
                     ExecuteError::ArgumentParse
                 })?;
                 inspector.cmd_check_inode(ino)
@@ -730,7 +730,7 @@ impl Executor {
     pub(crate) fn usage() {
         println!(
             r#"
-    stats:              Display RAFS filesystesm metadata
+    stats:              Display RAFS filesystem metadata
     ls:                 Show files in current directory
     cd DIR:             Change current directory
     stat FILE_NAME:     Show particular information of RAFS file

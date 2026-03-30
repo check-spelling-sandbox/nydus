@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: Apache-2.0
 
-//! Generate a RAFS filesystem bootstrap from an stargz layer, reusing the stargz layer as data blob.
+//! Generate a RAFS filesystem bootstrap from a stargz layer, reusing the stargz layer as data blob.
 
 use std::collections::HashMap;
 use std::ffi::{OsStr, OsString};
@@ -75,7 +75,7 @@ struct TocEntry {
     //
     // Empty means zero or unknown. Otherwise, the value is in UTC RFC3339 format.
     // // ModTime3339 is the modification time of the tar entry. Empty
-    // // means zero or unknown. Otherwise it's in UTC RFC3339
+    // // means zero or unknown. Otherwise, it's in UTC RFC3339
     // // format. Use the ModTime method to access the time.Time value.
     // #[serde(default, alias = "modtime")]
     // mod_time_3339: String,

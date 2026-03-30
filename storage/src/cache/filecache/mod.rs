@@ -90,7 +90,7 @@ impl FileCacheMgr {
         self.blobs.read().unwrap().get(&blob.blob_id()).cloned()
     }
 
-    // Create a file cache entry for the specified blob object if not present, otherwise
+    // Create a file cache entry for the specified blob object if not present; otherwise,
     // return the existing one.
     fn get_or_create_cache_entry(&self, blob: &Arc<BlobInfo>) -> Result<Arc<FileCacheEntry>> {
         if let Some(entry) = self.get(blob) {

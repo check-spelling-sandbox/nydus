@@ -110,7 +110,7 @@ func TestIsPathExists(t *testing.T) {
 	require.NoError(t, err)
 	defer os.RemoveAll(tempdir)
 	require.Equal(t, IsPathExists(tempdir), true)
-	var path = "UnexistFolder"
+	var path = "NonexistentFolder"
 	require.Equal(t, IsPathExists(path), false)
 }
 

@@ -14,7 +14,7 @@ use openssl::{rand, symm};
 
 // The length of the data unit to be encrypted.
 pub const DATA_UNIT_LENGTH: usize = 16;
-// The length of thd iv (Initialization Vector) to do AES-XTS encryption.
+// The length of the iv (Initialization Vector) to do AES-XTS encryption.
 pub const AES_XTS_IV_LENGTH: usize = 16;
 // The length of the key to do AES-128-XTS encryption.
 pub const AES_128_XTS_KEY_LENGTH: usize = 32;
@@ -188,7 +188,7 @@ impl Cipher {
     /// Encrypt plaintext with optional IV and return the encrypted data.
     ///
     /// For XTS, the caller needs to ensure that the top half of key is not identical to the
-    /// bottom half of the key, otherwise the encryption will fail.
+    /// bottom half of the key; otherwise, the encryption will fail.
     pub fn encrypt<'a>(
         &self,
         key: &[u8],
@@ -463,7 +463,7 @@ pub fn encrypt_with_context<'a>(
             let (key, iv) = cipher_ctx.get_cipher_meta();
             Ok(cipher_obj.encrypt(key, Some(iv), data)?)
         } else {
-            Err(einval!("the encrypt context can not be none"))
+            Err(einval!("the encrypt context cannot be none"))
         }
     } else {
         Ok(Cow::Borrowed(data))
@@ -482,7 +482,7 @@ pub fn decrypt_with_context<'a>(
             let (key, iv) = cipher_ctx.get_cipher_meta();
             Ok(Cow::from(cipher_obj.decrypt(key, Some(iv), data)?))
         } else {
-            Err(einval!("the decrypt context can not be none"))
+            Err(einval!("the decrypt context cannot be none"))
         }
     } else {
         Ok(Cow::Borrowed(data))

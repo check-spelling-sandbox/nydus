@@ -83,7 +83,7 @@ fn build_bootstrap(
     // For multi-layer build, merge the upper layer and lower layer with overlay whiteout applied.
     if bootstrap_ctx.layered {
         let mut parent = Bootstrap::load_parent_bootstrap(ctx, bootstrap_mgr, blob_mgr)?;
-        timing_tracer!({ parent.merge_overaly(ctx, tree) }, "merge_bootstrap")?;
+        timing_tracer!({ parent.merge_overlay(ctx, tree) }, "merge_bootstrap")?;
         tree = parent;
     }
 
@@ -366,7 +366,7 @@ impl TarBuilder {
         Ok(Node::new(inode, info, self.layer_idx))
     }
 
-    /// Check whether the path is a eStargz special file.
+    /// Check whether the path is an eStargz special file.
     pub fn is_stargz_special_files(&self, path: &Path) -> bool {
         path == Path::new("/stargz.index.json")
             || path == Path::new("/.prefetch.landmark")

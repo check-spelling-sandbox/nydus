@@ -1132,7 +1132,7 @@ impl BlobManager {
     /// Import all blobs from the global chunk dictionary for later chunk deduplication.
     ///
     /// The order to import blobs from parent bootstrap and chunk dictionary is important.
-    /// All blobs from parent bootstrap must be imported first, otherwise we need to fix blob index
+    /// All blobs from parent bootstrap must be imported first; otherwise, we need to fix blob index
     /// of chunks from parent bootstrap.
     pub fn extend_from_chunk_dict(&mut self, ctx: &BuildContext) -> Result<()> {
         let blobs = self.global_chunk_dict.get_blobs();
@@ -1339,7 +1339,7 @@ pub struct BuildContext {
     /// `decompress_offset` within chunk info. Therefore, provide a new flag
     /// to image tool thus to align chunks in blob with 4k size.
     pub aligned_chunk: bool,
-    /// Add a offset for compressed blob.
+    /// Add an offset for compressed blob.
     pub blob_offset: u64,
     /// Blob chunk compress flag.
     pub compressor: compress::Algorithm,

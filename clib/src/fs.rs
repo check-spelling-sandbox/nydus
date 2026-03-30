@@ -107,11 +107,11 @@ fn do_nydus_open_rafs(bootstrap: &str, config: &str) -> NydusFsHandle {
 
 /// Open a RAFS filesystem and return a handle to the filesystem object.
 ///
-/// The returned filesystem handle should be freed by calling `nydus_close_rafs()`, otherwise
+/// The returned filesystem handle should be freed by calling `nydus_close_rafs()`; otherwise,
 /// it will cause memory leak.
 ///
 /// # Safety
-/// Caller needs to ensure `bootstrap` and `config` are valid, otherwise it may cause memory access
+/// Caller needs to ensure `bootstrap` and `config` are valid; otherwise, it may cause memory access
 /// violation.
 #[no_mangle]
 pub unsafe extern "C" fn nydus_open_rafs(
@@ -129,11 +129,11 @@ pub unsafe extern "C" fn nydus_open_rafs(
 
 /// Open a RAFS filesystem with default configuration and return a handle to the filesystem object.
 ///
-/// The returned filesystem handle should be freed by calling `nydus_close_rafs()`, otherwise
+/// The returned filesystem handle should be freed by calling `nydus_close_rafs()`; otherwise,
 /// it will cause memory leak.
 ///
 /// # Safety
-/// Caller needs to ensure `bootstrap` and `dir_path` are valid, otherwise it may cause memory
+/// Caller needs to ensure `bootstrap` and `dir_path` are valid; otherwise, it may cause memory
 /// access violation.
 #[no_mangle]
 pub unsafe extern "C" fn nydus_open_rafs_default(
@@ -167,10 +167,10 @@ pub unsafe extern "C" fn nydus_open_rafs_default(
 /// Close the RAFS filesystem returned by `nydus_open_rafs()` and friends.
 ///
 /// All `NydusFileHandle` objects created from the `NydusFsHandle` should be freed before calling
-/// `nydus_close_rafs()`, otherwise it may cause panic.
+/// `nydus_close_rafs()`; otherwise, it may cause panic.
 ///
 /// # Safety
-/// Caller needs to ensure `handle` is valid, otherwise it may cause memory access violation.
+/// Caller needs to ensure `handle` is valid; otherwise, it may cause memory access violation.
 #[no_mangle]
 pub unsafe extern "C" fn nydus_close_rafs(handle: NydusFsHandle) {
     let mut fs = Box::from_raw(handle as *mut FileSystemState);

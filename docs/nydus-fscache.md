@@ -67,7 +67,7 @@ $ sudo reboot
 sudo yum install cachefilesd
 ```
 
-3.  Start cachefilesd deamon.
+3.  Start cachefilesd daemon.
 ```
 sudo systemctl start cachefilesd
 sudo systemctl status cachefilesd
@@ -162,7 +162,7 @@ version = 2
    disable_snapshot_annotations = false
 ```
 
-For more information on how to configure containerd to use nydus snapshotter please refer to [here](./containerd-env-setup.md).
+See [more information on how to configure containerd to use nydus snapshotter](./containerd-env-setup.md).
 
 6. Restart containerd with
    `service containerd restart`

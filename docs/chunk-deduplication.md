@@ -117,7 +117,7 @@ The principle of DBSCAN algorithm how to divide the cluster is shown in the diag
 
 **2.** The different versions inside each image are sorted chronologically, and each chunk is scored according to the Exponential Smoothing formula.
 $$S_0 =0 ,S_t = \alpha Y_{t-1} +(1- \alpha)S_{t-1} $$
-where, $\alpha=0.5$ , $Y_{t-1}$ indicates whether the chunk appeared in the previous image, 1 if it did, otherwise 0.
+where, $\alpha=0.5$ , $Y_{t-1}$ indicates whether the chunk appeared in the previous image, 1 if it did; otherwise, 0.
 
 **3.** Count the score for each chunk and select all chunks with a score greater than $THs$ as the chunk dictionary. Deduplicate the image version in the test set and calculate the storage space it occupies.
 

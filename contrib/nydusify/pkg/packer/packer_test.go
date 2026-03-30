@@ -169,7 +169,7 @@ func TestPack(t *testing.T) {
 		PushToRemote: true,
 	})
 	require.Error(t, err)
-	require.Contains(t, err.Error(), "can not push image to remote due to lack of backend configuration")
+	require.Contains(t, err.Error(), "cannot push image to remote due to lack of backend configuration")
 
 	os.Create(filepath.Join(tmpDir, "test.meta"))
 	os.Create(filepath.Join(tmpDir, "test.blob"))
@@ -357,7 +357,7 @@ func TestDumpBlobBackendConfigOpenError(t *testing.T) {
 			BucketName: "test",
 		},
 	}
-	// Pass a path in a non-existent directory to trigger os.OpenFile error
+	// Pass a path in a nonexistent directory to trigger os.OpenFile error
 	_, err := p.dumpBlobBackendConfig("/nonexistent/dir/config.json")
 	require.Error(t, err)
 }

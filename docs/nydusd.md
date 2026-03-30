@@ -253,7 +253,7 @@ Document located at: https://github.com/adamqqqplay/nydus-localdisk/blob/master/
       "type": "registry",
       "config": {
         ...
-        // Registry url scheme, leave empty to automatically detect, otherwise specify to https or http.
+        // Registry url scheme, leave empty to automatically detect; otherwise, specify to https or http.
         "scheme": "",
         // Registry hostname with format `$host:$port`
         "host": "my-registry:5000",
@@ -402,7 +402,7 @@ sudo nydusd \
     --writable
 ```
 
-This will create a FUSE overlay mountpoint at `/path/to/mnt/`, with one `Nydus` image as readonly lower layer and the `/path/to/upperdir` as writable upper layer, so that it can take over whole rootfs of a container, any contents writen from container will be stored in `/path/to/upperdir`.
+This will create a FUSE overlay mountpoint at `/path/to/mnt/`, with one `Nydus` image as readonly lower layer and the `/path/to/upperdir` as writable upper layer, so that it can take over whole rootfs of a container, any contents written from container will be stored in `/path/to/upperdir`.
 
 Removing `--writable` flag will make the overlay filesystem readonly if you wish.
 
